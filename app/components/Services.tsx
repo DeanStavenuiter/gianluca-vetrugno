@@ -122,7 +122,7 @@ const Services = () => {
           className="relative h-screen w-full"
         >
           {/* Header */}
-          <h2 className="w-full text-center text-[clamp(3rem,12vw,12rem)] tracking-[-0.05em] uppercase z-99 font-avantt-heavy text-[#f84f3e] md:mb-20 px-4">
+          <h2 className="w-full text-center text-[clamp(3rem,12vw,12rem)] tracking-[-0.05em] uppercase z-50 relative font-avantt-heavy text-[#f84f3e] md:mb-20 px-4">
             <span
               ref={(el) => {
                 if (el) titleWordsRef.current[0] = el;
@@ -142,7 +142,7 @@ const Services = () => {
               ref={(el) => {
                 if (el) circlesRef.current[index] = el;
               }}
-              className="circle absolute top-[30%] md:top-1/2 w-[400%] md:w-[300%] aspect-square left-[-150%] md:-left-full"
+              className="circle absolute top-[30%] md:top-1/2 w-[400%] md:w-[300%] aspect-square left-[-150%] md:-left-full z-10"
             >
               <div className="absolute top-15 left-1/2 -translate-x-1/2 -translate-y-1/2">
                 <div className="relative w-[55vw] md:w-[25vw] aspect-[0.74] overflow-hidden shadow-2xl">
