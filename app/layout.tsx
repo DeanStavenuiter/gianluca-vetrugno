@@ -1,15 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import localFont from "next/font/local";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const avanttHeavy = localFont({
+  src: "../public/fonts/Avantt-Heavy.otf",
+  variable: "--font-avantt-heavy",
 });
 
 export const metadata: Metadata = {
@@ -23,10 +18,25 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+    <html lang="nl-NL">
+      <head>
+        {/* prefetch aws images  */}
+        <link
+          rel="preload"
+          href="https://gianluca-vetrugno.s3.eu-west-3.amazonaws.com/gianluca-vetrugno.webp"
+          as="image"
+        />
+        <link
+          rel="dns-prefetch"
+          href="https://gianluca-vetrugno.s3.eu-west-3.amazonaws.com"
+        />
+        <link
+          rel="preconnect"
+          href="https://gianluca-vetrugno.s3.eu-west-3.amazonaws.com"
+          crossOrigin=""
+        />
+      </head>
+      <body className={`${avanttHeavy.variable} antialiased bg-black`}>
         {children}
       </body>
     </html>
