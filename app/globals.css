@@ -126,6 +126,7 @@
   }
   body {
     @apply bg-background text-foreground;
+    /* overflow-x: hidden; */
   }
   
   /* Hide scrollbar for all browsers */
@@ -142,6 +143,7 @@
   html {
     scrollbar-width: none;
     -ms-overflow-style: none;
+    /* overflow-x: hidden; */
   }
   
   body::-webkit-scrollbar,

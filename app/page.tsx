@@ -4,7 +4,7 @@ import Services from "./components/Services";
 
 export default function Home() {
   return (
-    <div className="min-h-[400vh]">
+    <div className="">
       <Hero />
       <Intro />
       <Services />

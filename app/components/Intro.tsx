@@ -135,7 +135,7 @@ const Intro = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="w-full py-20 px-6 md:px-12 lg:px-24">
+    <div ref={containerRef} className="relative z-10 w-full py-20 px-6 md:px-12 lg:px-24 overflow-x-hidden md:pb-50">
       <div className="relative space-y-20">
         {/* Image 1 - Absolutely positioned, rotated right */}
         <div
@@ -182,14 +182,14 @@ const Intro = () => {
         {/* Image 4 - Absolutely positioned, rotated left */}
         <div
           ref={image4Ref}
-          className=" absolute top-[65%] right-[5%] md:top-[92%] md:right-[35%] w-[150px] md:w-[140px] z-0 rotate-10 md:rotate-20"
+          className="md:z-100 absolute top-[65%] right-[5%] md:top-[92%] md:right-[35%] w-[150px] md:w-[140px] rotate-10 md:rotate-20"
         >
           <Image
             src="https://gianluca-vetrugno.s3.eu-west-3.amazonaws.com/gianluca/gianluca-posing-serious.webp"
             alt="Gianluca laughing"
             width={270}
             height={405}
-            className="shadow-2xl object-cover"
+            className="shadow-2xl object-cover relative"
           />
         </div>
 
