@@ -2,6 +2,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -19,6 +20,10 @@ const Intro = () => {
   const paragraph1Ref = useRef<HTMLParagraphElement>(null);
   const paragraph2Ref = useRef<HTMLParagraphElement>(null);
   const paragraph3Ref = useRef<HTMLParagraphElement>(null);
+  const image1Ref = useRef<HTMLDivElement>(null);
+  const image2Ref = useRef<HTMLDivElement>(null);
+  const image3Ref = useRef<HTMLDivElement>(null);
+  const image4Ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Array of all paragraph refs
@@ -95,6 +100,35 @@ const Intro = () => {
       );
     });
 
+    // Parallax animations for images - vertical movement
+    const images = [
+      { ref: image1Ref, yPercent: -30 },
+      { ref: image2Ref, yPercent: 40 },
+      { ref: image3Ref, yPercent: -35 },
+      { ref: image4Ref, yPercent: 45 },
+    ];
+
+    images.forEach(({ ref, yPercent }) => {
+      if (ref.current) {
+        gsap.fromTo(
+          ref.current,
+          {
+            y: yPercent > 0 ? -100 : 100,
+          },
+          {
+            y: yPercent > 0 ? 100 : -100,
+            ease: "none",
+            scrollTrigger: {
+              trigger: ref.current,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 1,
+            },
+          }
+        );
+      }
+    });
+
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
@@ -102,9 +136,65 @@ const Intro = () => {
 
   return (
     <div ref={containerRef} className="w-full py-20 px-6 md:px-12 lg:px-24">
-      <div className="space-y-20">
+      <div className="relative space-y-20">
+        {/* Image 1 - Absolutely positioned, rotated right */}
+        <div
+          ref={image1Ref}
+          className="absolute  right-[2%] top-0 md:right-[18%] w-[135px] md:w-[230px] z-0 rotate-[8deg]"
+        >
+          <Image
+            src="https://gianluca-vetrugno.s3.eu-west-3.amazonaws.com/gianluca/gianluca-posing.webp"
+            alt="Gianluca posing"
+            width={280}
+            height={420}
+            className="shadow-2xl object-cover"
+          />
+        </div>
+
+        {/* Image 2 - Absolutely positioned, rotated left */}
+        <div
+          ref={image2Ref}
+          className="absolute top-[25%] md:top-[20%] left-[8%] w-[120px] md:w-[300px] z-0 -rotate-6"
+        >
+          <Image
+            src="https://gianluca-vetrugno.s3.eu-west-3.amazonaws.com/gianluca/gianluca-posing-smiling.webp"
+            alt="Gianluca smiling"
+            width={250}
+            height={375}
+            className="shadow-2xl object-cover"
+          />
+        </div>
+
+        {/* Image 3 - Absolutely positioned, rotated right */}
+        <div
+          ref={image3Ref}
+          className="hidden md:block absolute top-[45%] right-[32%] w-[190px] md:w-[180px] z-0 "
+        >
+          <Image
+            src="https://gianluca-vetrugno.s3.eu-west-3.amazonaws.com/gianluca/gianluca-posing-laughing.webp"
+            alt="Gianluca serious"
+            width={260}
+            height={390}
+            className="shadow-2xl object-cover"
+          />
+        </div>
+
+        {/* Image 4 - Absolutely positioned, rotated left */}
+        <div
+          ref={image4Ref}
+          className=" absolute top-[65%] right-[5%] md:top-[92%] md:right-[35%] w-[150px] md:w-[140px] z-0 rotate-10 md:rotate-20"
+        >
+          <Image
+            src="https://gianluca-vetrugno.s3.eu-west-3.amazonaws.com/gianluca/gianluca-posing-serious.webp"
+            alt="Gianluca laughing"
+            width={270}
+            height={405}
+            className="shadow-2xl object-cover"
+          />
+        </div>
+
         {/* First paragraph - Left aligned */}
-        <div className="max-w-[70%] ml-0">
+        <div className="relative z-10 max-w-[70%] ml-0">
           <p
             ref={paragraph1Ref}
             className="text-[clamp(2.5rem,5vw,10rem)] leading-[0.9] text-[#fee9ce] font-light font-avantt-heavy [&>span]:inline-block [&>span]:whitespace-nowrap"
@@ -114,7 +204,7 @@ const Intro = () => {
         </div>
 
         {/* Second paragraph - Center/Right aligned */}
-        <div className="max-w-[60%] ml-auto mr-[10%]">
+        <div className="relative z-10 max-w-[60%] ml-auto mr-[10%]">
           <p
             ref={paragraph2Ref}
             className="text-[clamp(2.5rem,5vw,10rem)] leading-[0.9] text-[#fee9ce] font-light font-avantt-heavy [&>span]:inline-block [&>span]:whitespace-nowrap"
@@ -124,7 +214,7 @@ const Intro = () => {
         </div>
 
         {/* Third paragraph - Left aligned but indented */}
-        <div className="max-w-[75%] ml-[5%]">
+        <div className="relative z-10 max-w-[75%] ml-[5%]">
           <p
             ref={paragraph3Ref}
             className="text-[clamp(2.5rem,5vw,10rem)] leading-[0.9] text-[#fee9ce] font-light font-avantt-heavy [&>span]:inline-block [&>span]:whitespace-nowrap"
