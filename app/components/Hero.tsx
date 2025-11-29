@@ -9,11 +9,11 @@ gsap.registerPlugin(ScrollTrigger);
 const Hero = () => {
   // Check if mobile screen
   const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
-  const xOffsetFirstname = isMobile ? "-42vw" : "-51vw";
-  const yOffsetFirstname = isMobile ? "-94vh" : "-81vh";
+  const xOffsetFirstname = isMobile ? "-21vw" : "-51vw";
+  const yOffsetFirstname = isMobile ? "-92vh" : "-81vh";
 
-  const xOffsetLastname = isMobile ? "38vw" : "48vw";
-  const yOffsetLastname = isMobile ? "94vh" : "81vh";
+  const xOffsetLastname = isMobile ? "19.5vw" : "48vw";
+  const yOffsetLastname = isMobile ? "92vh" : "81vh";
 
   const firstnameRef = useRef<HTMLSpanElement>(null);
   const lastnameRef = useRef<HTMLSpanElement>(null);
@@ -131,7 +131,7 @@ const Hero = () => {
   ]);
 
   return (
-    <div ref={containerRef} className="overflow-hidden max-h-screen w-full h-screen relative">
+    <div ref={containerRef} className="overflow-hidden max-h-dvh w-full h-dvh relative">
       <div ref={imageRef} className="absolute inset-0 w-full h-full">
         <Image
           src="https://gianluca-vetrugno.s3.eu-west-3.amazonaws.com/gianluca-vetrugno.webp"
@@ -146,7 +146,7 @@ const Hero = () => {
           className="object-cover object-center"
         />
       </div>
-      <h1 className="text-[#f84f3e] text-[clamp(2.5rem,12vw,13rem)] leading-[0.8] tracking-tighter font-avantt-heavy uppercase z-10">
+      <h1 className="text-[#f84f3e] text-[clamp(4rem,12vw,13rem)] leading-[0.8] tracking-tighter font-avantt-heavy uppercase z-10">
         <span
           ref={firstnameRef}
           className="absolute right-[2px] sm:right-[10px] md:right-[15px] bottom-0"
