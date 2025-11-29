@@ -19,13 +19,14 @@ const Hero = () => {
     const viewportHeight = window.innerHeight;
     const viewportWidth = window.innerWidth;
     const isMobile = viewportWidth < 768;
+    const isTablet = viewportWidth < 1024;
 
     // Calculate offsets based on actual viewport dimensions
-    const xOffsetFirstname = isMobile ? viewportWidth * -0.21 : viewportWidth * -0.51;
-    const yOffsetFirstname = isMobile ? viewportHeight * -0.92 : viewportHeight * -0.81;
+    const xOffsetFirstname = isMobile ? viewportWidth * -0.30 : isTablet ? viewportWidth * -0.41 : viewportWidth * -0.51;
+    const yOffsetFirstname = isMobile ? viewportHeight * -0.92 : isTablet ? viewportHeight * -0.81 : viewportHeight * -0.81;
 
-    const xOffsetLastname = isMobile ? viewportWidth * 0.195 : viewportWidth * 0.48;
-    const yOffsetLastname = isMobile ? viewportHeight * 0.92 : viewportHeight * 0.81;
+    const xOffsetLastname = isMobile ? viewportWidth * 0.28 : isTablet ? viewportWidth * 0.38 : viewportWidth * 0.48;
+    const yOffsetLastname = isMobile ? viewportHeight * 0.92 : isTablet ? viewportHeight * 0.81 : viewportHeight * 0.81;
     // Disable scroll initially
     document.body.style.overflow = "hidden";
 
@@ -143,7 +144,7 @@ const Hero = () => {
           className="object-cover md:object-contain object-center"
         />
       </div>
-      <h1 className="text-[#f84f3e] text-[clamp(4rem,12vw,13rem)] leading-[0.8] tracking-tighter font-avantt-heavy uppercase z-10">
+      <h1 className="text-[#f84f3e] text-[clamp(3.5rem,15vw,11.5rem)] leading-[0.8] tracking-tighter font-avantt-heavy uppercase z-10">
         <span
           ref={firstnameRef}
           className="absolute right-[2px] sm:right-[10px] md:right-[15px] bottom-0"

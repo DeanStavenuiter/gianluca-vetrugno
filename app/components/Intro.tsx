@@ -54,6 +54,7 @@ const Intro = () => {
         {
           x: 0,
           ease: "none",
+          
           scrollTrigger: {
             trigger: el,
             start: "top 80%",
