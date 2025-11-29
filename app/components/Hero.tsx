@@ -7,14 +7,6 @@ import { useEffect, useRef } from "react";
 gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
-  // Check if mobile screen
-  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
-  const xOffsetFirstname = isMobile ? "-21vw" : "-51vw";
-  const yOffsetFirstname = isMobile ? "-92vh" : "-81vh";
-
-  const xOffsetLastname = isMobile ? "19.5vw" : "48vw";
-  const yOffsetLastname = isMobile ? "92vh" : "81vh";
-
   const firstnameRef = useRef<HTMLSpanElement>(null);
   const lastnameRef = useRef<HTMLSpanElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
@@ -23,6 +15,17 @@ const Hero = () => {
   const tl = gsap.timeline();
 
   useEffect(() => {
+    // Get actual viewport dimensions (dynamic viewport height)
+    const viewportHeight = window.innerHeight;
+    const viewportWidth = window.innerWidth;
+    const isMobile = viewportWidth < 768;
+
+    // Calculate offsets based on actual viewport dimensions
+    const xOffsetFirstname = isMobile ? viewportWidth * -0.21 : viewportWidth * -0.51;
+    const yOffsetFirstname = isMobile ? viewportHeight * -0.92 : viewportHeight * -0.81;
+
+    const xOffsetLastname = isMobile ? viewportWidth * 0.195 : viewportWidth * 0.48;
+    const yOffsetLastname = isMobile ? viewportHeight * 0.92 : viewportHeight * 0.81;
     // Disable scroll initially
     document.body.style.overflow = "hidden";
 
@@ -43,14 +46,14 @@ const Hero = () => {
       firstnameRef.current,
       {
         // Starting position (center bottom of screen)
-        y: "0vh",
-        x: "0",
+        y: 0,
+        x: 0,
         opacity: 0,
       },
       {
         // First, fade in and move to top of screen
         y: yOffsetFirstname,
-        x: "0",
+        x: 0,
         opacity: 1,
         duration: 1.2,
         ease: "power2.inOut",
@@ -67,13 +70,13 @@ const Hero = () => {
     tl.fromTo(
       lastnameRef.current,
       {
-        y: "0",
-        x: "0",
+        y: 0,
+        x: 0,
         opacity: 0,
       },
       {
         y: yOffsetLastname,
-        x: "0",
+        x: 0,
         opacity: 1,
         duration: 1.2,
         ease: "power2.inOut",
@@ -103,7 +106,7 @@ const Hero = () => {
         .to(
           firstnameRef.current,
           {
-            x: "100vw",
+            x: viewportWidth,
             opacity: 0,
           },
           0
@@ -111,7 +114,7 @@ const Hero = () => {
         .to(
           lastnameRef.current,
           {
-            x: "-100vw",
+            x: -viewportWidth,
             opacity: 0,
           },
           0
@@ -122,13 +125,7 @@ const Hero = () => {
       document.body.style.overflow = "auto";
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
-  }, [
-    tl,
-    xOffsetFirstname,
-    yOffsetFirstname,
-    xOffsetLastname,
-    yOffsetLastname,
-  ]);
+  }, [tl]);
 
   return (
     <div ref={containerRef} className="overflow-hidden max-h-dvh w-full h-dvh relative">
