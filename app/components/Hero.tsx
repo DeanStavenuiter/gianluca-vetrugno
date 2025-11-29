@@ -140,7 +140,7 @@ const Hero = () => {
           sizes="(max-width: 768px) 100vw,
        (max-width: 1200px) 100vw,
        1600px"
-          className="object-contain object-center"
+          className="object-cover md:object-contain object-center"
         />
       </div>
       <h1 className="text-[#f84f3e] text-[clamp(4rem,12vw,13rem)] leading-[0.8] tracking-tighter font-avantt-heavy uppercase z-10">
