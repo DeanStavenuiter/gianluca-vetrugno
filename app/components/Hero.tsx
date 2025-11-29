@@ -131,7 +131,7 @@ const Hero = () => {
     <div ref={containerRef} className="overflow-hidden max-h-dvh w-full h-dvh relative">
       <div ref={imageRef} className="absolute inset-0 w-full h-full">
         <Image
-          src="https://gianluca-vetrugno.s3.eu-west-3.amazonaws.com/gianluca-vetrugno.webp"
+          src="https://gianluca-vetrugno.s3.eu-west-3.amazonaws.com/gianluca/gianluca-vetrugno-full.webp"
           alt="Hero"
           fill
           priority
@@ -140,7 +140,7 @@ const Hero = () => {
           sizes="(max-width: 768px) 100vw,
        (max-width: 1200px) 100vw,
        1600px"
-          className="object-cover object-center"
+          className="object-contain object-center"
         />
       </div>
       <h1 className="text-[#f84f3e] text-[clamp(4rem,12vw,13rem)] leading-[0.8] tracking-tighter font-avantt-heavy uppercase z-10">
