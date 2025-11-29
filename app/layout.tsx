@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import localFont from "next/font/local";
+import CustomCursor from "./components/CustomCursor";
 
 const avanttHeavy = localFont({
   src: "../public/fonts/Avantt-Heavy.otf",
@@ -37,6 +38,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`${avanttHeavy.variable} antialiased bg-black`}>
+        <CustomCursor />
         {children}
       </body>
     </html>

@@ -117,6 +117,13 @@
   * {
     @apply border-border outline-ring/50;
   }
+  
+  /* Hide default cursor only on non-touch devices */
+  @media (pointer: fine) {
+    * {
+      cursor: none;
+    }
+  }
   body {
     @apply bg-background text-foreground;
   }
