@@ -23,13 +23,13 @@ const services: Service[] = [
     title: "Events & Catering",
     description: "From intimate gatherings to high-end corporate events.",
     image:
-      "https://gianluca-vetrugno.s3.eu-west-3.amazonaws.com/services/IMG_7112.webp",
+      "https://gianluca-vetrugno.s3.eu-west-3.amazonaws.com/services/IMG_8784.webp",
   },
   {
     title: "Consulting",
     description: "Menu creation, creative direction, restaurant support.",
     image:
-      "https://gianluca-vetrugno.s3.eu-west-3.amazonaws.com/services/IMG_8784.webp",
+      "https://gianluca-vetrugno.s3.eu-west-3.amazonaws.com/services/IMG_7112.webp",
   },
   {
     title: "Collaborations",
@@ -125,7 +125,10 @@ const Services = () => {
       className="text-[#fee9ce] overflow-x-clip md:py-20 "
     >
       <div ref={pinHeightRef} className="h-[400vh]">
-        <div ref={containerRef} className="relative h-screen w-full overflow-hidden">
+        <div
+          ref={containerRef}
+          className="relative h-screen w-full overflow-hidden"
+        >
           {/* Header */}
           <h2 className="w-full text-center text-[clamp(3rem,12vw,12rem)] tracking-[-0.05em] uppercase z-50 relative font-avantt-heavy text-[#f84f3e] md:mb-20 px-4">
             <span
@@ -164,13 +167,15 @@ const Services = () => {
                     className="object-cover"
                   />
                   {/* Text overlay */}
-                  <div className="absolute inset-0 flex flex-col justify-end p-4 md:p-6">
-                    <h3 className="text-[#f84f3e] font-avantt-heavy uppercase text-lg md:text-2xl mb-2">
-                      {service.title}
-                    </h3>
-                    <p className="text-xs md:text-sm text-[#fee9ce]">
-                      {service.description}
-                    </p>
+                  <div className="absolute inset-0 flex flex-col justify-end ">
+                    <div className="bg-black/30 backdrop-blur-lg rounded-b-lg p-3 md:p-4 border border-white/10">
+                      <h3 className="text-[#f84f3e] font-avantt-heavy uppercase text-lg md:text-2xl mb-2">
+                        {service.title}
+                      </h3>
+                      <p className="text-xs md:text-sm text-[#ffb160]">
+                        {service.description}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
