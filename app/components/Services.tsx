@@ -54,6 +54,7 @@ const Services = () => {
   const scrollTextRef = useRef<HTMLParagraphElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
 
+
   useEffect(() => {
     if (!titleRef.current) return;
 
@@ -94,6 +95,13 @@ const Services = () => {
   }, []);
 
   useEffect(() => {
+
+    const viewportWidth = window.innerWidth;
+    const isMobile = viewportWidth < 768;
+    // const isTablet = viewportWidth < 1024;
+
+    const circleDegrees = isMobile ? 30 : 20;
+
     if (!sectionRef.current || !pinHeightRef.current || !containerRef.current)
       return;
 
@@ -114,7 +122,7 @@ const Services = () => {
       ScrollTrigger.create({
         trigger: pinHeightRef.current,
         start: "top top",
-        end: "80% bottom",
+        end: "bottom bottom",
         pin: containerRef.current,
       });
 
@@ -122,12 +130,12 @@ const Services = () => {
       gsap.fromTo(
         circlesRef.current,
         {
-          rotation: 20,
+          rotation: circleDegrees,
         },
         {
-          rotation: -20,
+          rotation: -circleDegrees,
           ease: "power2.inOut",
-          stagger: 0.06,
+          stagger: 0.08,
           scrollTrigger: {
             trigger: pinHeightRef.current,
             start: "top bottom",
@@ -143,16 +151,11 @@ const Services = () => {
     };
   }, []);
 
+
   return (
-    <section
-      ref={sectionRef}
-      className="text-[#fee9ce] overflow-x-clip "
-    >
-      <div ref={pinHeightRef} className="h-[185vh]">
-        <div
-          ref={containerRef}
-          className="relative h-screen w-full"
-        >
+    <section ref={sectionRef} className="text-[#fee9ce] overflow-x-clip ">
+      <div ref={pinHeightRef} className="h-[80vh] md:h-[275vh]">
+        <div ref={containerRef} className="relative h-screen w-full">
           {/* Header */}
           <h2
             ref={titleRef}
@@ -168,7 +171,7 @@ const Services = () => {
               ref={(el) => {
                 if (el) circlesRef.current[index] = el;
               }}
-              className="circle absolute top-[35%] md:top-[60%] w-[400%] md:w-[300%] aspect-square left-[-150%] md:-left-full z-10"
+              className="circle absolute top-[35%] md:top-[60%] w-[400%] md:w-[300%] aspect-square left-[-150%] md:-left-full z-10 rounded-b-lg"
             >
               <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
                 <div className="relative w-[55vw] md:w-[25vw] aspect-[0.74] overflow-hidden shadow-2xl rounded-[0.6vw]">
@@ -177,11 +180,11 @@ const Services = () => {
                     alt={service.title}
                     fill
                     sizes="(max-width: 768px) 55vw, 25vw"
-                    className="object-cover"
+                    className="object-cover rounded-b-[0.6vw]"
                   />
                   {/* Text overlay */}
                   <div className="absolute inset-0 flex flex-col justify-end ">
-                    <div className="bg-black/30 backdrop-blur-lg rounded-b-lg p-3 md:p-4 border border-white/10">
+                    <div className="bg-black/30 backdrop-blur-lg rounded-b-[0.6vw] p-3 md:p-4 border border-white/10">
                       <h3 className="text-[#f84f3e] font-avantt-heavy uppercase text-lg md:text-2xl mb-2">
                         {service.title}
                       </h3>
