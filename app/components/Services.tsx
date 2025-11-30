@@ -153,13 +153,13 @@ const Services = () => {
 
 
   return (
-    <section ref={sectionRef} className="text-[#fee9ce] overflow-x-clip ">
-      <div ref={pinHeightRef} className="h-[80vh] md:h-[275vh]">
-        <div ref={containerRef} className="relative h-screen w-full">
+    <section ref={sectionRef} className="text-[#fee9ce] overflow-x-clip">
+      <div ref={pinHeightRef} className="h-[80vh] md:h-[300vh]">
+        <div ref={containerRef} className="relative h-screen w-full overflow-hidden">
           {/* Header */}
           <h2
             ref={titleRef}
-            className="w-full text-center text-[clamp(2.5rem,8vw,6rem)] tracking-[-0.05em] uppercase z-50 relative font-avantt-heavy text-[#f84f3e] md:mb-20 px-4"
+            className="w-full text-center text-[clamp(2.5rem,8vw,6rem)] tracking-[-0.05em] uppercase z-50 relative font-avantt-heavy text-[#f84f3e] px-4"
           >
             services
           </h2>
@@ -171,10 +171,10 @@ const Services = () => {
               ref={(el) => {
                 if (el) circlesRef.current[index] = el;
               }}
-              className="circle absolute top-[35%] md:top-[60%] w-[400%] md:w-[300%] aspect-square left-[-150%] md:-left-full z-10 rounded-b-lg"
+              className="circle absolute top-[40%] md:top-[50%] w-[400%] md:w-[300%] aspect-square left-[-150%] md:-left-full z-10 rounded-b-lg"
             >
               <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                <div className="relative w-[55vw] md:w-[25vw] aspect-[0.74] overflow-hidden shadow-2xl rounded-[0.6vw]">
+                <div className="relative w-[55vw] md:w-[20vw] aspect-[0.74] overflow-hidden shadow-2xl rounded-[0.6vw]">
                   <Image
                     src={service.image}
                     alt={service.title}
