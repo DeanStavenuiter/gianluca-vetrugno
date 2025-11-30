@@ -2,9 +2,10 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SplitText } from "gsap/SplitText";
 import Image from "next/image";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
 interface Service {
   title: string;
@@ -51,7 +52,46 @@ const Services = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const circlesRef = useRef<HTMLDivElement[]>([]);
   const scrollTextRef = useRef<HTMLParagraphElement>(null);
-  const titleWordsRef = useRef<HTMLSpanElement[]>([]);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+
+  useEffect(() => {
+    if (!titleRef.current) return;
+
+    const titleElement = titleRef.current;
+    const title = new SplitText(titleElement, { type: "chars" });
+
+    // Set initial state (hidden)
+    gsap.set(title.chars, {
+      opacity: 0,
+      y: -50,
+    });
+
+    // Create scroll-triggered animation
+    gsap.to(title.chars, {
+      opacity: 1,
+      y: 0,
+      ease: "back.out(1.7)",
+      stagger: {
+        from: "center",
+        each: 0.06,
+      },
+      scrollTrigger: {
+        trigger: titleElement,
+        start: "top 70%",
+        end: "bottom 20%",
+        toggleActions: "play none none reverse",
+      },
+    });
+
+    // Cleanup function
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => {
+        if (trigger.trigger === titleElement) {
+          trigger.kill();
+        }
+      });
+    };
+  }, []);
 
   useEffect(() => {
     if (!sectionRef.current || !pinHeightRef.current || !containerRef.current)
@@ -74,40 +114,24 @@ const Services = () => {
       ScrollTrigger.create({
         trigger: pinHeightRef.current,
         start: "top top",
-        end: "bottom bottom",
+        end: "80% bottom",
         pin: containerRef.current,
-      });
-
-      // Animate title words
-      titleWordsRef.current.forEach((word) => {
-        if (word && word.children) {
-          gsap.to(word.children, {
-            yPercent: 100,
-            ease: "expo.inOut",
-            scrollTrigger: {
-              trigger: word,
-              start: "bottom bottom",
-              end: "top 30%",
-              scrub: 1.2,
-            },
-          });
-        }
       });
 
       // Animate circles rotation
       gsap.fromTo(
         circlesRef.current,
         {
-          rotation: 30,
+          rotation: 20,
         },
         {
-          rotation: -30,
+          rotation: -20,
           ease: "power2.inOut",
           stagger: 0.06,
           scrollTrigger: {
             trigger: pinHeightRef.current,
-            start: "top bottom+=50%",
-            end: "bottom bottom",
+            start: "top bottom",
+            end: "bottom 50",
             scrub: true,
           },
         }
@@ -122,30 +146,19 @@ const Services = () => {
   return (
     <section
       ref={sectionRef}
-      className="text-[#fee9ce] overflow-x-clip md:py-20 "
+      className="text-[#fee9ce] overflow-x-clip "
     >
-      <div ref={pinHeightRef} className="h-[400vh]">
+      <div ref={pinHeightRef} className="h-[185vh]">
         <div
           ref={containerRef}
-          className="relative h-screen w-full overflow-hidden"
+          className="relative h-screen w-full"
         >
           {/* Header */}
-          <h2 className="w-full text-center text-[clamp(3rem,12vw,12rem)] tracking-[-0.05em] uppercase z-50 relative font-avantt-heavy text-[#f84f3e] md:mb-20 px-4">
-            <span
-              ref={(el) => {
-                if (el) titleWordsRef.current[0] = el;
-              }}
-              className="inline-block overflow-hidden relative"
-              style={{ verticalAlign: "top" }}
-            >
-              <span className="block px-2">services</span>
-              <span
-                className="block absolute inset-0 -translate-y-full px-2"
-                aria-hidden="true"
-              >
-                services
-              </span>
-            </span>
+          <h2
+            ref={titleRef}
+            className="w-full text-center text-[clamp(2.5rem,8vw,6rem)] tracking-[-0.05em] uppercase z-50 relative font-avantt-heavy text-[#f84f3e] md:mb-20 px-4"
+          >
+            services
           </h2>
 
           {/* Circles with images */}
