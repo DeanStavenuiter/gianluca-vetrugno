@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import localFont from "next/font/local";
 import CustomCursor from "./components/CustomCursor";
+import { Toaster } from "sonner";
 
 const avanttHeavy = localFont({
   src: "../public/fonts/Avantt-Heavy.otf",
@@ -45,6 +46,20 @@ export default function RootLayout({
       <body className={`${avanttHeavy.variable} ${avanttMedium.variable} antialiased bg-black`}>
         <CustomCursor />
         {children}
+        <Toaster 
+          position="bottom-right"
+          toastOptions={{
+            style: {
+              background: '#1a1a1a',
+              color: '#fee9ce',
+              border: '1px solid #fee9ce',
+              fontFamily: 'var(--font-avantt-medium)',
+              fontSize: '1.1rem',
+            },
+            className: 'sonner-toast',
+          }}
+          richColors
+        />
       </body>
     </html>
   );

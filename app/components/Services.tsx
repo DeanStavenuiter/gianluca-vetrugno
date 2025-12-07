@@ -121,7 +121,7 @@ const Services = () => {
       // Pin the container
       ScrollTrigger.create({
         trigger: pinHeightRef.current,
-        start: "top top",
+        start: "top top+=30",
         end: "bottom bottom",
         pin: containerRef.current,
       });
