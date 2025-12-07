@@ -11,6 +11,9 @@ const customJestConfig = {
   testEnvironment: 'jest-environment-jsdom',
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/$1',
+    '^gsap$': '<rootDir>/__mocks__/gsap.js',
+    '^gsap/ScrollTrigger$': '<rootDir>/__mocks__/gsap/ScrollTrigger.js',
+    '^gsap/SplitText$': '<rootDir>/__mocks__/gsap/SplitText.js',
   },
   collectCoverageFrom: [
     'app/**/*.{js,jsx,ts,tsx}',

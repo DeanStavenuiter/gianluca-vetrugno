@@ -1,17 +1,8 @@
 // Learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom'
 
-// Mock GSAP for tests
-jest.mock('gsap', () => ({
-  registerPlugin: jest.fn(),
-  fromTo: jest.fn(),
-}))
-
-jest.mock('gsap/ScrollTrigger', () => ({
-  ScrollTrigger: {
-    getAll: jest.fn(() => []),
-  },
-}))
+// GSAP is automatically mocked via moduleNameMapper in jest.config.js
+// No need for explicit jest.mock() calls here
 
 // Mock next/navigation
 jest.mock('next/navigation', () => ({

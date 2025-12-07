@@ -84,7 +84,10 @@ const Navigation = () => {
           </div>
         ))}
 
-        <div className="absolute right-0 top-0 h-full bg-[#ffb160] flex items-center justify-center gap-2 px-4 group">
+        <div 
+          className="absolute right-0 top-0 h-full bg-[#ffb160] flex items-center justify-center gap-2 px-4 group cursor-pointer"
+          onClick={() => scrollToSection("contact")}
+        >
           <span className="text-black uppercase font-avantt-medium">
             Let&apos;s Connect
           </span>
