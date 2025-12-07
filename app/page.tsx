@@ -5,6 +5,7 @@ import Articles from "./components/Articles";
 import Outro from "./components/Outro";
 import Navigation from "./components/Navigation";
 import Contact from "./components/Contact";
+import Footer from "./components/Footer";
 
 export default function Home() {
   return (
@@ -26,6 +27,7 @@ export default function Home() {
       <div data-section="contact">
         <Contact />
       </div>
+      <Footer />
     </div>
   );
 }
