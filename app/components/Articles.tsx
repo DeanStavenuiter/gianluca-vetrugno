@@ -234,7 +234,7 @@ const Articles = () => {
       <div ref={containerRef} className="">
         <h2
           ref={titleRef}
-          className="text-[clamp(2.5rem,8vw,6rem)] font-avantt-heavy uppercase text-[#f84f3e] pl-4 md:pl-6"
+          className="text-[clamp(2.5rem,8vw,6rem)] tracking-tighter font-avantt-heavy uppercase text-[#f84f3e] pl-4 md:pl-6"
         >
           Press & Features
         </h2>

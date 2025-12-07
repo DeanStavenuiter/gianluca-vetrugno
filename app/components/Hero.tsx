@@ -18,15 +18,20 @@ const Hero = () => {
     // Get actual viewport dimensions (dynamic viewport height)
     const viewportHeight = window.innerHeight;
     const viewportWidth = window.innerWidth;
-    const isMobile = viewportWidth < 768;
-    const isTablet = viewportWidth < 1024;
 
-    // Calculate offsets based on actual viewport dimensions
-    const xOffsetFirstname = isMobile ? viewportWidth * -0.30 : isTablet ? viewportWidth * -0.41 : viewportWidth * -0.51;
-    const yOffsetFirstname = isMobile ? viewportHeight * -0.92 : isTablet ? viewportHeight * -0.81 : viewportHeight * -0.81;
+    // Get the actual width and height of the text elements
+    const firstnameWidth = firstnameRef.current?.offsetWidth || 0;
+    const lastnameWidth = lastnameRef.current?.offsetWidth || 0;
+    const firstnameHeight = firstnameRef.current?.offsetHeight || 0;
+    const lastnameHeight = lastnameRef.current?.offsetHeight || 0;
 
-    const xOffsetLastname = isMobile ? viewportWidth * 0.28 : isTablet ? viewportWidth * 0.38 : viewportWidth * 0.48;
-    const yOffsetLastname = isMobile ? viewportHeight * 0.92 : isTablet ? viewportHeight * 0.81 : viewportHeight * 0.81;
+    // Horizontal offsets: firstname left edge at 15px, lastname right edge at 15px from right
+    const xOffsetFirstname = 15 + firstnameWidth - viewportWidth + 20;
+    const xOffsetLastname = viewportWidth - 15 - lastnameWidth - 20;
+
+    // Vertical offsets: firstname top edge at 15px, lastname bottom edge at 15px from bottom
+    const yOffsetFirstname = 15 + firstnameHeight - viewportHeight;
+    const yOffsetLastname = viewportHeight - 15 - lastnameHeight;
     // Disable scroll initially
     document.body.style.overflow = "hidden";
 

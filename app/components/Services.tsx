@@ -121,7 +121,7 @@ const Services = () => {
       // Pin the container
       ScrollTrigger.create({
         trigger: pinHeightRef.current,
-        start: "top top",
+        start: "top top+=30",
         end: "bottom bottom",
         pin: containerRef.current,
       });
@@ -159,7 +159,7 @@ const Services = () => {
           {/* Header */}
           <h2
             ref={titleRef}
-            className="w-full text-center text-[clamp(2.5rem,8vw,6rem)] tracking-[-0.05em] uppercase z-50 relative font-avantt-heavy text-[#f84f3e] px-4"
+            className="w-full text-center text-[clamp(2.5rem,8vw,6rem)] tracking-tighter uppercase z-50 relative font-avantt-heavy text-[#f84f3e] px-4"
           >
             services
           </h2>
