@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -101,11 +102,11 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8 mb-12">
           {/* Name and Description - Left Side */}
           <div ref={nameRef} className="flex flex-col gap-2">
-            <p className="text-[#fee9ce] text-[clamp(0.875rem,1.2vw,1.125rem)] font-avantt-medium">
-              © {currentYear} Gianluca Vetrugno
+            <p className="text-[#fee9ce] text-[clamp(0.875rem,1.2vw,1.125rem)] font-avantt-medium uppercase">
+              Gianluca Vetrugno
             </p>
             <p className="text-[#fee9ce]/60 text-[clamp(0.75rem,1vw,0.9375rem)] font-avantt-medium">
-              Former Michelin Starred Head Chef & Creative Consultant
+              Former Michelin Starred Head Chef & Creative Consultant.
             </p>
           </div>
 
@@ -168,14 +169,28 @@ const Footer = () => {
         </div>
 
         {/* Bottom Section */}
-        <div className="flex flex-col md:flex-row justify-end items-start md:items-center gap-4 pt-8 border-t border-[#fee9ce]/10">
-          {/* Back to Top */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pt-8 border-t border-[#fee9ce]/10">
+          <div>
+            <p className="text-[#fee9ce]/60 text-[clamp(0.75rem,1vw,0.9375rem)] font-avantt-medium">
+              © {currentYear} Gianluca Vetrugno
+            </p>
+          </div>
+
+          <div>
+            <p className="text-[#fee9ce]/60 text-[clamp(0.75rem,1vw,0.9375rem)] font-avantt-medium hover:text-[#ffb160] transition-colors duration-300">
+              Made by{" "}
+              <Link href="https://deanstavenuiter.com" target="_blank">
+                {" "}
+                Dean Stavenuiter
+              </Link>
+            </p>
+          </div>
           <button
             onClick={scrollToTop}
             className="text-[#fee9ce] hover:text-[#ffb160] text-[clamp(0.875rem,1.2vw,1.125rem)] font-avantt-medium uppercase tracking-tight transition-colors duration-300 flex items-center gap-2 group"
           >
             <span>Back to Top</span>
-            <span className="transition-transform duration-300 group-hover:-translate-y-1 group-hover:-translate-x-1">
+            <span className="transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1">
               ↗
             </span>
           </button>
