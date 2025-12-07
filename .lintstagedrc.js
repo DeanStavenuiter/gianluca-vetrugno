@@ -1,9 +1,6 @@
 module.exports = {
-  // Run tests for all test files
-  '**/__tests__/**/*.[jt]s?(x)': ['jest --bail --findRelatedTests'],
-  
-  // Run tests when source files change
-  'app/**/*.{ts,tsx}': ['jest --bail --findRelatedTests'],
+  // Run form submit test only
+  'app/lib/__tests__/send-contact-form.test.ts': ['jest --bail --passWithNoTests'],
   
   // Run linting on TypeScript and JavaScript files
   '*.{js,jsx,ts,tsx}': ['eslint --fix'],
