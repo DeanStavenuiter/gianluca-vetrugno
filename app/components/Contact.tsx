@@ -2,11 +2,12 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SplitText } from "gsap/SplitText";
 import { toast } from "sonner";
 import sendContactForm from "../lib/send-contact-form";
 import { contactFormSchema } from "../lib/validation";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
 type FieldErrors = {
   name?: string;
@@ -57,29 +58,46 @@ const Contact = () => {
 
   // Animate heading on scroll
   useEffect(() => {
-    if (headingRef.current) {
-      gsap.fromTo(
-        headingRef.current,
-        {
-          y: 100,
-          opacity: 0,
-        },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1.2,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: headingRef.current,
-            start: "top 80%",
-            end: "top 50%",
-            scrub: 1,
-          },
-        }
-      );
-    }
+    if (!headingRef.current) return;
 
-    // Animate form fields
+    const titleElement = headingRef.current;
+    const title = new SplitText(titleElement, { type: "chars" });
+
+    // Set initial state (hidden)
+    gsap.set(title.chars, {
+      opacity: 0,
+      y: -50,
+    });
+
+    // Create scroll-triggered animation
+    gsap.to(title.chars, {
+      opacity: 1,
+      y: 0,
+      ease: "back.out(1.7)",
+      stagger: {
+        from: "center",
+        each: 0.06,
+      },
+      scrollTrigger: {
+        trigger: titleElement,
+        start: "top 70%",
+        end: "bottom 20%",
+        toggleActions: "play none none reverse",
+      },
+    });
+
+    // Cleanup function
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => {
+        if (trigger.trigger === titleElement) {
+          trigger.kill();
+        }
+      });
+    };
+  }, []);
+
+  // Animate form fields
+  useEffect(() => {
     if (formRef.current) {
       const fields = formRef.current.querySelectorAll("input, textarea, button");
       gsap.fromTo(
@@ -191,7 +209,7 @@ const Contact = () => {
         {/* Heading */}
         <h2
           ref={headingRef}
-          className="text-[clamp(3rem,8vw,8rem)] leading-[0.9] tracking-tighter font-avantt-heavy uppercase text-[#f84f3e] mb-16"
+          className="text-[clamp(2.5rem,8vw,6rem)] leading-[0.9] tracking-tighter font-avantt-heavy uppercase text-[#f84f3e] mb-16"
         >
           Let&apos;s talk
         </h2>
