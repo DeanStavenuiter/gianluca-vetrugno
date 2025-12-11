@@ -100,7 +100,7 @@ const Services = () => {
     const isMobile = viewportWidth < 768;
     // const isTablet = viewportWidth < 1024;
 
-    const circleDegrees = isMobile ? 30 : 20;
+    const circleDegrees = isMobile ? 25 : 20;
 
     if (!sectionRef.current || !pinHeightRef.current || !containerRef.current)
       return;
@@ -138,7 +138,7 @@ const Services = () => {
           stagger: 0.08,
           scrollTrigger: {
             trigger: pinHeightRef.current,
-            start: "top bottom",
+            start: "top bottom-=100",
             end: "bottom 50",
             scrub: true,
           },
