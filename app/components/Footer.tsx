@@ -179,7 +179,7 @@ const Footer = () => {
           <div>
             <p className="text-[#fee9ce]/60 text-[clamp(0.75rem,1vw,0.9375rem)] font-avantt-medium hover:text-[#ffb160] transition-colors duration-300">
               Made by{" "}
-              <Link href="https://deanstavenuiter.com" target="_blank">
+              <Link href="https://deanstavenuiter.nl" target="_blank">
                 {" "}
                 Dean Stavenuiter
               </Link>
