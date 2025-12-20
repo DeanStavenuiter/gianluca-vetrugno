@@ -149,7 +149,7 @@ const Hero = () => {
           className="object-cover md:object-contain object-center"
         />
       </div>
-      <h1 className="text-[#f84f3e] text-[clamp(3.5rem,15vw,11.5rem)] leading-[0.8] tracking-tighter font-avantt-heavy uppercase z-10">
+      <h1 className="text-[#ffe8cd] text-[clamp(2.5rem,15vw,7rem)] leading-[0.8] tracking-tighter font-avantt-heavy uppercase z-10">
         <span
           ref={firstnameRef}
           className="absolute right-[2px] sm:right-[10px] md:right-[15px] bottom-0"
