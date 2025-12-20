@@ -11,6 +11,7 @@ const Hero = () => {
   const lastnameRef = useRef<HTMLSpanElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const taglineRef = useRef<HTMLDivElement>(null);
 
   const tl = gsap.timeline();
 
@@ -40,7 +41,7 @@ const Hero = () => {
       scrollTrigger: {
         trigger: containerRef.current,
         start: "top top",
-        end: "+=100%",
+        end: "+=60%",
         scrub: 1,
         pin: true,
         pinSpacing: false,
@@ -100,30 +101,60 @@ const Hero = () => {
         1.2
       );
 
+    // Animate tagline in after names are positioned
+    tl.fromTo(
+      taglineRef.current,
+      {
+        opacity: 0,
+        y: 20,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power2.out",
+      }
+    );
+
     // After initial animations complete, enable scrolling
     tl.call(() => {
       document.body.style.overflow = "auto";
-      
+
       // Set up scroll animations that continue from current position
+      // First: tagline fades out quickly
       scrollTl
-        .to(imageRef.current, {
+        .to(taglineRef.current, {
           opacity: 0,
+          y: -20,
+          duration: 0.25,
         })
+        // Then: names slide out (complete by end of pin)
         .to(
           firstnameRef.current,
           {
             x: viewportWidth,
             opacity: 0,
+            duration: 0.75,
           },
-          0
+          0.25
         )
         .to(
           lastnameRef.current,
           {
             x: -viewportWidth,
             opacity: 0,
+            duration: 0.75,
           },
-          0
+          0.25
+        )
+        // Image fades out more slowly (continues as Intro scrolls in)
+        .to(
+          imageRef.current,
+          {
+            opacity: 0,
+            duration: 1.5,
+          },
+          0.25
         );
     });
 
@@ -134,7 +165,10 @@ const Hero = () => {
   }, [tl]);
 
   return (
-    <div ref={containerRef} className="overflow-hidden max-h-dvh w-full h-dvh relative">
+    <div
+      ref={containerRef}
+      className="overflow-hidden max-h-dvh w-full h-dvh relative"
+    >
       <div ref={imageRef} className="absolute inset-0 w-full h-full">
         <Image
           src="https://gianluca-vetrugno.s3.eu-west-3.amazonaws.com/gianluca/gianluca-vetrugno-full.webp"
@@ -149,7 +183,7 @@ const Hero = () => {
           className="object-cover md:object-contain object-center"
         />
       </div>
-      <h1 className="text-[#ffe8cd] text-[clamp(2.5rem,15vw,7rem)] leading-[0.8] tracking-tighter font-avantt-heavy uppercase z-10">
+      <h1 className="text-(--header-text-color) text-[clamp(2.5rem,10vw,7rem)] md:text-[clamp(1.5rem,15vw,7rem)] leading-[0.8] tracking-tighter font-avantt-heavy uppercase z-10">
         <span
           ref={firstnameRef}
           className="absolute right-[2px] sm:right-[10px] md:right-[15px] bottom-0"
@@ -163,6 +197,18 @@ const Hero = () => {
           vetrugno
         </span>
       </h1>
+      <div
+        ref={taglineRef}
+        className="absolute bottom-[15px] left-[15px] sm:left-[20px] md:left-[30px] z-10 opacity-0 gap-1"
+      >
+        <p className="text-(--primary-text-color) text-[clamp(0.875rem,2vw,1.125rem)] leading-snug font-avantt-medium flex flex-col ">
+          <span>Seasonal, intuitive cooking</span>
+          <span>rooted in experience</span>
+        </p>
+        <p className="text-(--primary-text-color)/60 uppercase text-[clamp(0.75rem,1.5vw,0.875rem)] leading-[1.4] font-avantt-medium mt-2 tracking-wide">
+          Creative chef
+        </p>
+      </div>
     </div>
   );
 };

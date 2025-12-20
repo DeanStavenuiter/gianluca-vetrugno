@@ -14,11 +14,10 @@
 }
 
 :root {
-  --header-text-color: #ffe8cd;
-  --primary-text-color: #c5a16f;
+  --header-text-color: #c5a16f;
+  --primary-text-color: #ffe8cd;
   --secondary-text-color: #a9a9a9;
 }
-
 
 @layer base {
   /* Hide default cursor only on non-touch devices */

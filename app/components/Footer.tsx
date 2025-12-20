@@ -112,7 +112,7 @@ const Footer = () => {
 
           {/* Links Section */}
           <div ref={linksRef} className="flex flex-col gap-4">
-            <h3 className="text-[#f84f3e] text-[clamp(1rem,1.5vw,1.25rem)] font-avantt-heavy uppercase tracking-tight">
+            <h3 className="text-(--header-text-color) text-[clamp(1rem,1.5vw,1.25rem)] font-avantt-heavy uppercase tracking-tight">
               Links
             </h3>
             <div className="flex flex-col gap-2">
@@ -130,7 +130,7 @@ const Footer = () => {
 
           {/* Services Section */}
           <div ref={servicesRef} className="flex flex-col gap-4">
-            <h3 className="text-[#f84f3e] text-[clamp(1rem,1.5vw,1.25rem)] font-avantt-heavy uppercase tracking-tight">
+            <h3 className="text-(--header-text-color) text-[clamp(1rem,1.5vw,1.25rem)] font-avantt-heavy uppercase tracking-tight">
               Services
             </h3>
             <div className="flex flex-col gap-2">
@@ -148,7 +148,7 @@ const Footer = () => {
 
           {/* Contact Section */}
           <div ref={contactRef} className="flex flex-col gap-4">
-            <h3 className="text-[#f84f3e] text-[clamp(1rem,1.5vw,1.25rem)] font-avantt-heavy uppercase tracking-tight">
+            <h3 className="text-(--header-text-color) text-[clamp(1rem,1.5vw,1.25rem)] font-avantt-heavy uppercase tracking-tight">
               Contact
             </h3>
             <div className="flex flex-col gap-2">

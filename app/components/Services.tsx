@@ -159,7 +159,7 @@ const Services = () => {
           {/* Header */}
           <h2
             ref={titleRef}
-            className="w-full text-center text-[clamp(2.5rem,8vw,6rem)] tracking-tighter uppercase z-50 relative font-avantt-heavy text-[#f84f3e] px-4"
+            className="w-full text-center text-[clamp(2.5rem,8vw,6rem)] tracking-tighter uppercase z-50 relative font-avantt-heavy text-(--header-text-color) px-4"
           >
             services
           </h2>
@@ -185,7 +185,7 @@ const Services = () => {
                   {/* Text overlay */}
                   <div className="absolute inset-0 flex flex-col justify-end ">
                     <div className="bg-black/30 backdrop-blur-lg rounded-b-[0.6vw] p-3 md:p-4 border border-white/10">
-                      <h3 className="text-[#f84f3e] font-avantt-heavy uppercase text-lg md:text-2xl mb-2">
+                      <h3 className="text-(--header-text-color) font-avantt-heavy uppercase text-lg md:text-2xl mb-2">
                         {service.title}
                       </h3>
                       <p className="text-xs md:text-sm text-[#ffb160]">

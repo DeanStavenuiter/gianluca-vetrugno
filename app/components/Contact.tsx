@@ -209,7 +209,7 @@ const Contact = () => {
         {/* Heading */}
         <h2
           ref={headingRef}
-          className="text-[clamp(2.5rem,8vw,6rem)] leading-[0.9] tracking-tighter font-avantt-heavy uppercase text-[#f84f3e] mb-16"
+          className="text-[clamp(2.5rem,8vw,6rem)] leading-[0.9] tracking-tighter font-avantt-heavy uppercase text-(--header-text-color) mb-16"
         >
           Let&apos;s talk
         </h2>
@@ -243,7 +243,7 @@ const Contact = () => {
               placeholder="Your Name"
               className={`w-full bg-transparent border-b-2 ${
                 fieldErrors.name ? 'border-[#f84f3e]' : 'border-[#fee9ce]/30'
-              } py-4 text-[clamp(1.5rem,3vw,2.5rem)] font-avantt-medium text-[#fee9ce] placeholder:text-[#fee9ce]/40 focus:border-[#f84f3e] focus:outline-none transition-colors duration-300 [&:-webkit-autofill]:[-webkit-text-fill-color:#fee9ce] [&:-webkit-autofill]:[-webkit-box-shadow:0_0_0_1000px_transparent_inset] [&:-webkit-autofill]:bg-transparent`}
+              } py-4 text-[clamp(1.5rem,3vw,2.5rem)] font-avantt-medium text-[#fee9ce] placeholder:text-[#fee9ce]/40 focus:border-(--header-text-color) focus:outline-none transition-colors duration-300 [&:-webkit-autofill]:[-webkit-text-fill-color:#fee9ce] [&:-webkit-autofill]:[-webkit-box-shadow:0_0_0_1000px_transparent_inset] [&:-webkit-autofill]:bg-transparent`}
             />
             {fieldErrors.name && (
               <p className="text-[clamp(1rem,1.5vw,1.2rem)] font-avantt-medium text-[#f84f3e] mt-2">
@@ -263,7 +263,7 @@ const Contact = () => {
               placeholder="Your Email"
               className={`w-full bg-transparent border-b-2 ${
                 fieldErrors.email ? 'border-[#f84f3e]' : 'border-[#fee9ce]/30'
-              } py-4 text-[clamp(1.5rem,3vw,2.5rem)] font-avantt-medium text-[#fee9ce] placeholder:text-[#fee9ce]/40 focus:border-[#f84f3e] focus:outline-none transition-colors duration-300 [&:-webkit-autofill]:[-webkit-text-fill-color:#fee9ce] [&:-webkit-autofill]:[-webkit-box-shadow:0_0_0_1000px_transparent_inset] [&:-webkit-autofill]:bg-transparent`}
+              } py-4 text-[clamp(1.5rem,3vw,2.5rem)] font-avantt-medium text-[#fee9ce] placeholder:text-[#fee9ce]/40 focus:border-(--header-text-color) focus:outline-none transition-colors duration-300 [&:-webkit-autofill]:[-webkit-text-fill-color:#fee9ce] [&:-webkit-autofill]:[-webkit-box-shadow:0_0_0_1000px_transparent_inset] [&:-webkit-autofill]:bg-transparent`}
             />
             {fieldErrors.email && (
               <p className="text-[clamp(1rem,1.5vw,1.2rem)] font-avantt-medium text-[#f84f3e] mt-2">
@@ -283,7 +283,7 @@ const Contact = () => {
               placeholder="Subject"
               className={`w-full bg-transparent border-b-2 ${
                 fieldErrors.subject ? 'border-[#f84f3e]' : 'border-[#fee9ce]/30'
-              } py-4 text-[clamp(1.5rem,3vw,2.5rem)] font-avantt-medium text-[#fee9ce] placeholder:text-[#fee9ce]/40 focus:border-[#f84f3e] focus:outline-none transition-colors duration-300 [&:-webkit-autofill]:[-webkit-text-fill-color:#fee9ce] [&:-webkit-autofill]:[-webkit-box-shadow:0_0_0_1000px_transparent_inset] [&:-webkit-autofill]:bg-transparent`}
+              } py-4 text-[clamp(1.5rem,3vw,2.5rem)] font-avantt-medium text-[#fee9ce] placeholder:text-[#fee9ce]/40 focus:border-(--header-text-color) focus:outline-none transition-colors duration-300 [&:-webkit-autofill]:[-webkit-text-fill-color:#fee9ce] [&:-webkit-autofill]:[-webkit-box-shadow:0_0_0_1000px_transparent_inset] [&:-webkit-autofill]:bg-transparent`}
             />
             {fieldErrors.subject && (
               <p className="text-[clamp(1rem,1.5vw,1.2rem)] font-avantt-medium text-[#f84f3e] mt-2">
@@ -303,7 +303,7 @@ const Contact = () => {
               rows={6}
               className={`w-full bg-transparent border-b-2 ${
                 fieldErrors.message ? 'border-[#f84f3e]' : 'border-[#fee9ce]/30'
-              } py-4 text-[clamp(1.5rem,3vw,2.5rem)] font-avantt-medium text-[#fee9ce] placeholder:text-[#fee9ce]/40 focus:border-[#f84f3e] focus:outline-none transition-colors duration-300 resize-none [&:-webkit-autofill]:[-webkit-text-fill-color:#fee9ce] [&:-webkit-autofill]:[-webkit-box-shadow:0_0_0_1000px_transparent_inset] [&:-webkit-autofill]:bg-transparent`}
+              } py-4 text-[clamp(1.5rem,3vw,2.5rem)] font-avantt-medium text-[#fee9ce] placeholder:text-[#fee9ce]/40 focus:border-(--header-text-color) focus:outline-none transition-colors duration-300 resize-none [&:-webkit-autofill]:[-webkit-text-fill-color:#fee9ce] [&:-webkit-autofill]:[-webkit-box-shadow:0_0_0_1000px_transparent_inset] [&:-webkit-autofill]:bg-transparent`}
             />
             {fieldErrors.message && (
               <p className="text-[clamp(1rem,1.5vw,1.2rem)] font-avantt-medium text-[#f84f3e] mt-2">
