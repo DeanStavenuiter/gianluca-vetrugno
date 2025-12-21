@@ -36,6 +36,23 @@ const About = () => {
           },
         });
       });
+
+      // Animate list items one by one
+      const listItems = content.querySelectorAll(".about-list-item");
+      gsap.set(listItems, { opacity: 0, y: 20 });
+
+      gsap.to(listItems, {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        ease: "power2.out",
+        stagger: 0.25,
+        scrollTrigger: {
+          trigger: listItems[0],
+          start: "top 80%",
+          toggleActions: "play none none none",
+        },
+      });
     }, containerRef);
 
     return () => {
@@ -43,43 +60,100 @@ const About = () => {
     };
   }, []);
 
-  const paragraphs = [
-    <>
-      I&apos;m <span className="text-(--header-text-color)">Gianluca Vetrugno</span> — Italo‑Belgian chef.
-    </>,
-    <>
-      I&apos;ve spent the past 15 years working in the HoReCa industry, gaining experience across kitchens, private dining, and restaurant projects.
-    </>,
-    <>
-      Over the last decade, I trained and worked in <span className="text-(--header-text-color)">Michelin‑starred restaurants</span>, including The Jane (★★) under Nick Bril and Sergio Herman, becoming Sous Chef.
-    </>,
-    <>
-      In the last five years, I worked as <span className="text-(--header-text-color)">Head Chef</span> at Le Pristine (★) with Sergio Herman.
-    </>,
-    <>
-      Today I am working as Assistant Executive Chef at J&M Catering, part of Compass Group Belgium.
-    </>,
-    <>
-      I&apos;m also the founder of <Link href="https://naturaleantwerp.com/" target="_blank" className="text-(--header-text-color) hover:underline"><span className="text-(--header-text-color)">Naturale</span></Link>, a culinary event in Antwerp dedicated to natural wines, artisan drinks, and authentic food.
-    </>,
-    <>
-      Alongside these projects, I continue to work as a <span className="text-(--header-text-color)">freelance chef</span>, focusing on private dinners, collaborations, and pop‑up events.
-    </>,
-  ];
-
   return (
     <div
       ref={containerRef}
-      className="relative text-(--primary-text-color) z-10 w-full py-20 px-6 md:px-12 lg:px-24 overflow-x-hidden"
+      className="relative text-(--primary-text-color) z-10 w-full py-20 px-6 md:px-12 lg:px-24 overflow-x-hidden mb-20"
     >
-      <div ref={contentRef} className="flex flex-col items-center space-y-12 max-w-4xl mx-auto">
-        {paragraphs.map((text, index) => (
-          <div key={index} className="paragraph-wrapper relative z-10 text-center">
-            <p className="text-[clamp(1.5rem,3vw,4rem)] leading-[1.1] font-avantt-medium">
-              {text}
-            </p>
-          </div>
-        ))}
+      <div
+        ref={contentRef}
+        className="flex flex-col items-center space-y-12 max-w-4xl mx-auto"
+      >
+        <h2 className="text-[clamp(2.5rem,8vw,4rem)] tracking-tighter font-avantt-heavy uppercase text-(--header-text-color) pl-4 md:pl-6 opacity-70">
+          About
+        </h2>
+        <div className="paragraph-wrapper relative z-10 text-center mb-12 max-w-3xl">
+          <p className="text-[clamp(1.5rem,3vw,4rem)] leading-[1.1] font-avantt-medium">
+            I&apos;m{" "}
+            <span className="text-(--header-text-color)">
+              Gianluca Vetrugno
+            </span>{" "}
+            an Italo‑Belgian chef with over fifteen years of experience across
+            fine dining, private kitchens, and large scale events
+          </p>
+        </div>
+
+        <ul className="relative z-10 text-center space-y-6 w-full max-w-xl text-(--secondary-text-color) ">
+          <li className="about-list-item flex items-start gap-4">
+            <span className="text-[clamp(1.1rem,2vw,1.5rem)] leading-[1.3] font-avantt-regular">
+              <span className="text-(--secondary-text-color) opacity-90">
+                Over a decade working and training in
+              </span>{" "}
+              <span className="text-(--primary-text-color) opacity-75">
+                Michelin starred kitchens
+              </span>
+            </span>
+          </li>
+          <li className="about-list-item flex items-start gap-4">
+            <span className="text-[clamp(1.1rem,2vw,1.5rem)] leading-[1.3] font-avantt-regular">
+              <span className="text-(--primary-text-color) opacity-75">
+                Sous Chef
+              </span>{" "}
+              <span className="text-(--secondary-text-color) opacity-90">
+                at The Jane with two Michelin stars, under Nick Bril and Sergio
+                Herman{" "}
+              </span>
+            </span>
+          </li>
+          <li className="about-list-item flex items-start gap-4">
+            <span className="text-[clamp(1.1rem,2vw,1.5rem)] leading-[1.3] font-avantt-regular">
+              <span className="text-(--primary-text-color) opacity-75">
+                Head Chef
+              </span>{" "}
+              <span className="text-(--secondary-text-color) opacity-90">
+                at Le Pristine with one Michelin star for five years
+              </span>
+            </span>
+          </li>
+          <li className="about-list-item flex items-start gap-4">
+            <span className="text-[clamp(1.1rem,2vw,1.5rem)] leading-[1.3] font-avantt-regular">
+              Currently{" "}
+              <span className="text-(--primary-text-color) opacity-75">
+                Assistant Executive Chef
+              </span>{" "}
+              <span className="text-(--secondary-text-color) opacity-90">
+                at J&M Catering, part of Compass Group Belgium
+              </span>
+            </span>
+          </li>
+        </ul>
+        <div className="paragraph-wrapper relative z-10 text-center max-w-3xl pt-12">
+          <h3 className="mb-6 text-sm uppercase tracking-widest text-(--header-text-color) font-avantt-medium opacity-70">
+            Naturale
+          </h3>
+
+          <p className="text-[clamp(1rem,1.4vw,1.25rem)] leading-relaxed font-avantt-regular text-(--secondary-text-color)">
+            Naturale is a culinary event in Antwerp dedicated to natural wines,
+            artisan drinks, and authentic food. Created as a place where
+            producers and curious taste explorers come together to taste,
+            connect, and share.
+          </p>
+
+          <Link
+            href="https://naturaleantwerp.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block mt-4 text-sm uppercase tracking-wider text-(--header-text-color) opacity-70 hover:opacity-100 transition-opacity"
+          >
+            Explore Naturale
+          </Link>
+
+          <p className="mt-4 text-[clamp(1rem,1.4vw,1.25rem)] leading-relaxed font-avantt-regular text-(--secondary-text-color)">
+            Three editions have already been hosted, bringing together
+            experiences, craftsmanship, and a growing community around natural
+            cuisine and beverages.
+          </p>
+        </div>
       </div>
     </div>
   );

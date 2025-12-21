@@ -230,16 +230,16 @@ const Articles = () => {
   }, []);
 
   return (
-    <section className="min-h-screen w-full font-avantt-heavy">
+    <section className="min-h-screen w-full">
       <div ref={containerRef} className="">
         <h2
           ref={titleRef}
-          className="text-[clamp(2.5rem,8vw,6rem)] tracking-tighter font-avantt-heavy uppercase text-(--header-text-color) pl-4 md:pl-6"
+          className="text-[clamp(2.5rem,8vw,6rem)] font-avantt-medium uppercase text-(--header-text-color) pl-4 md:pl-6 opacity-70 tracking-wide"
         >
-          Press & Features
+          Featured in
         </h2>
 
-        <ul ref={listRef} className="">
+        <ul ref={listRef} className="font-avantt-regular">
           {articles.map((article, index) => (
             <li
               key={index}
@@ -248,12 +248,12 @@ const Articles = () => {
             >
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                 <div className="flex-1">
-                  <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-[#fee9ce]">
+                  <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-(--primary-text-color)">
                     {article.title}
                   </h3>
                 </div>
                 <div className="flex items-center gap-4 md:gap-8">
-                  <span className="text-sm md:text-base font-semibold whitespace-nowrap text-[#ffb160]">
+                  <span className="text-sm md:text-base font-semibold whitespace-nowrap text-(--secondary-text-color) group-hover:text-(--primary-text-color) transition-colors duration-300">
                     {article.publication}
                   </span>
                   {/* Media container for hover effect - hidden on mobile */}
@@ -271,7 +271,7 @@ const Articles = () => {
                   >
                     {/* Images will be dynamically added here */}
                   </div>
-                  <span className="text-sm text-[#fee9ce] md:text-base whitespace-nowrap md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
+                  <span className="text-sm text-(--primary-text-color) md:text-base whitespace-nowrap md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
                     Read article{" "}
                     <span className="hidden md:inline-block -rotate-45">→</span>
                     <span className="inline-block md:hidden -rotate-45">→</span>

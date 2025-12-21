@@ -71,7 +71,7 @@ const Intro = () => {
           scrollTrigger: {
             trigger: el,
             start: "top 80%",
-            end: "bottom 75%",
+            end: "bottom 85%",
             scrub: 0.2,
           },
         }
@@ -89,7 +89,7 @@ const Intro = () => {
           scrollTrigger: {
             trigger: el,
             start: "top 80%",
-            end: "bottom 75%",
+            end: "bottom 85%",
             scrub: 0.2,
           },
         }
@@ -107,7 +107,7 @@ const Intro = () => {
           scrollTrigger: {
             trigger: el,
             start: "top 90%",
-            end: "bottom 75%",
+            end: "bottom 85%",
             scrub: 0.2,
           },
         }
@@ -120,21 +120,18 @@ const Intro = () => {
   }, []);
 
   const paragraphs = [
-    "My cooking comes from intuition, care, and experience.",
-    "I've worked hard to get where I am, but I've always tried to keep my approach simple — focused on the moment and on what the ingredients are telling me.",
-    "I cook following the seasons, with respect for balance and clarity of flavors.",
-    "Every dish is built carefully, so nothing overwhelms anything else — each element has its place.",
-    "When people eat my food, I want them to feel comfortable.",
-    "Like sitting at the table when my grandmother used to cook — feeling welcome, understood, and taken care of.",
-    "I like to explain a dish, where it comes from, and the idea behind it, so that food becomes something personal, not just something to eat.",
+    "My cooking is guided by intuition, care, and experience.",
+    "I work with the seasons, listening closely to what each ingredient asks for.",
+    "Every dish is built with balance and clarity of flavors, so nothing overwhelms anything else.",
+    "Each element has its place",
   ];
 
   return (
-    <div ref={containerRef} className="relative text-(--primary-text-color) z-10 w-full py-20 px-6 md:px-12 lg:px-24 overflow-x-hidden md:pb-50">
+    <div ref={containerRef} className="relative text-(--primary-text-color) z-10 w-full px-6 md:px-12 lg:px-24 overflow-x-hidden">
       <div ref={paragraphsContainerRef} className="flex flex-col items-center space-y-12 max-w-4xl mx-auto">
         {paragraphs.map((text, index) => (
           <div key={index} className="paragraph-wrapper relative z-10 text-center">
-            <p className="text-[clamp(1.5rem,3vw,4rem)] leading-[1.1] font-light font-avantt-heavy [&>span]:inline-block [&>span]:whitespace-nowrap">
+            <p className="text-[clamp(1.5rem,3vw,4rem)] leading-relaxedfont-light font-avantt-medium [&>span]:inline-block [&>span]:whitespace-nowrap">
               {text}
             </p>
           </div>

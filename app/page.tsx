@@ -6,6 +6,7 @@ import About from "./components/About";
 import Navigation from "./components/Navigation";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import BridgeLine from "./components/BridgeLine";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       </div>
       <div data-section="about">
         <Intro />
+        <BridgeLine />
       </div>
       <div data-section="services">
         <Services />

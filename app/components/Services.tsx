@@ -154,7 +154,7 @@ const Services = () => {
 
   return (
     <section ref={sectionRef} className="text-[#fee9ce] overflow-x-clip">
-      <div ref={pinHeightRef} className="h-[80vh] md:h-[300vh]">
+      <div ref={pinHeightRef} className="h-[250vh] md:h-[300vh]">
         <div ref={containerRef} className="relative h-screen w-full overflow-hidden">
           {/* Header */}
           <h2
@@ -171,10 +171,10 @@ const Services = () => {
               ref={(el) => {
                 if (el) circlesRef.current[index] = el;
               }}
-              className="circle absolute top-[40%] md:top-[50%] w-[400%] md:w-[300%] aspect-square left-[-150%] md:-left-full z-10 rounded-b-lg"
+              className="circle absolute top-[40%] md:top-[50%] w-[400%] md:w-[300%] aspect-square left-[-150%] md:-left-full z-10 rounded-b-lg pointer-events-none"
             >
               <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                <div className="relative w-[55vw] md:w-[20vw] aspect-[0.74] overflow-hidden shadow-2xl rounded-[0.6vw]">
+                <div className="group relative w-[55vw] md:w-[20vw] aspect-[0.74] overflow-hidden shadow-2xl rounded-[0.6vw] pointer-events-auto">
                   <Image
                     src={service.image}
                     alt={service.title}
@@ -188,7 +188,7 @@ const Services = () => {
                       <h3 className="text-(--header-text-color) font-avantt-heavy uppercase text-lg md:text-2xl mb-2">
                         {service.title}
                       </h3>
-                      <p className="text-xs md:text-sm text-[#ffb160]">
+                      <p className="text-xs md:text-sm text-(--secondary-text-color) font-avantt-regular group-hover:text-(--primary-text-color) transition-colors duration-300 opacity-90">
                         {service.description}
                       </p>
                     </div>

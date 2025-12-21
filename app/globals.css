@@ -5,6 +5,7 @@
 
 @theme inline {
 
+  --font-avantt-regular: var(--font-avantt-regular);
   --font-avantt-medium: var(--font-avantt-medium);
   --font-avantt-heavy: var(--font-avantt-heavy);
 
