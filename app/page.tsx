@@ -7,6 +7,7 @@ import Navigation from "./components/Navigation";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import BridgeLine from "./components/BridgeLine";
+import Outro from "./components/Outro";
 
 export default function Home() {
   return (
@@ -28,6 +29,7 @@ export default function Home() {
       </div>
       <div data-section="contact">
         <Contact />
+        <Outro />
       </div>
       <Footer />
     </div>

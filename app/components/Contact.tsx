@@ -19,7 +19,7 @@ type FieldErrors = {
 const Contact = () => {
   // Add styles to override autofill
   useEffect(() => {
-    const style = document.createElement('style');
+    const style = document.createElement("style");
     style.textContent = `
       input:-webkit-autofill,
       input:-webkit-autofill:hover,
@@ -41,7 +41,6 @@ const Contact = () => {
       document.head.removeChild(style);
     };
   }, []);
-
 
   const containerRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
@@ -96,10 +95,37 @@ const Contact = () => {
     };
   }, []);
 
-  // Animate form fields
+  // Animate form fields and labels
   useEffect(() => {
     if (formRef.current) {
-      const fields = formRef.current.querySelectorAll("input, textarea, button");
+      const fields = formRef.current.querySelectorAll(
+        "input, textarea, button"
+      );
+      const labels = formRef.current.querySelectorAll("label");
+
+      // Animate labels with a slide-in from left effect
+      gsap.fromTo(
+        labels,
+        {
+          x: -30,
+          opacity: 0,
+        },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 0.6,
+          stagger: 0.15,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: formRef.current,
+            start: "top 80%",
+            end: "top 60%",
+            scrub: 1,
+          },
+        }
+      );
+
+      // Animate form fields
       gsap.fromTo(
         fields,
         {
@@ -169,8 +195,10 @@ const Contact = () => {
 
     // If client-side validation passes, submit to server
     try {
-      const result = await sendContactForm(new FormData(formRef.current as HTMLFormElement));
-      
+      const result = await sendContactForm(
+        new FormData(formRef.current as HTMLFormElement)
+      );
+
       if (result?.error) {
         // Handle server-side errors
         console.log(result);
@@ -186,11 +214,17 @@ const Contact = () => {
         setIsSubmitting(false);
         return;
       }
-      
+
       if (result?.success) {
         // Success!
         toast.success("Thank you! Your message has been sent successfully.");
-        setFormData({ name: "", email: "", subject: "", message: "", honey: "" });
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+          honey: "",
+        });
         setIsSubmitting(false);
       }
     } catch (error) {
@@ -205,21 +239,17 @@ const Contact = () => {
       ref={containerRef}
       className="relative z-10 w-full py-20 px-6 md:px-12 lg:px-24 overflow-x-hidden"
     >
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-3xl mx-auto">
         {/* Heading */}
         <h2
           ref={headingRef}
-          className="text-[clamp(2.5rem,8vw,6rem)] leading-[0.9] tracking-tighter font-avantt-heavy uppercase text-(--header-text-color) mb-16"
+          className="text-[clamp(2.5rem,8vw,4rem)] leading-[0.9] font-avantt-medium uppercase text-(--header-text-color) mb-16 opacity-70 tracking-wide"
         >
           Let&apos;s talk
         </h2>
 
         {/* Contact Form */}
-        <form
-          ref={formRef}
-          onSubmit={handleSubmit}
-          className="space-y-8 max-w-4xl"
-        >
+        <form ref={formRef} onSubmit={handleSubmit} className="space-y-8">
           {/* Honeypot Field - Hidden from users, visible to bots */}
           <input
             type="text"
@@ -234,16 +264,22 @@ const Contact = () => {
 
           {/* Name Field */}
           <div className="relative">
+            <label
+              htmlFor="name"
+              className="block text-[clamp(0.875rem,1.5vw,1rem)] font-avantt-medium text-(--primary-text-color)/70 uppercase tracking-wider mb-2"
+            >
+              Name
+            </label>
             <input
               type="text"
+              id="name"
               name="name"
               value={formData.name}
               onChange={handleChange}
               required
-              placeholder="Your Name"
               className={`w-full bg-transparent border-b-2 ${
-                fieldErrors.name ? 'border-[#f84f3e]' : 'border-[#fee9ce]/30'
-              } py-4 text-[clamp(1.5rem,3vw,2.5rem)] font-avantt-medium text-[#fee9ce] placeholder:text-[#fee9ce]/40 focus:border-(--header-text-color) focus:outline-none transition-colors duration-300 [&:-webkit-autofill]:[-webkit-text-fill-color:#fee9ce] [&:-webkit-autofill]:[-webkit-box-shadow:0_0_0_1000px_transparent_inset] [&:-webkit-autofill]:bg-transparent`}
+                fieldErrors.name ? "border-[#f84f3e]" : "border-[#fee9ce]/30"
+              } py-4 font-avantt-medium text-(--primary-text-color)  placeholder:text-(--primary-text-color)/40 focus:border-(--header-text-color) focus:outline-none transition-colors duration-300 [&:-webkit-autofill]:[-webkit-text-fill-color:#fee9ce] [&:-webkit-autofill]:[-webkit-box-shadow:0_0_0_1000px_transparent_inset] [&:-webkit-autofill]:bg-transparent`}
             />
             {fieldErrors.name && (
               <p className="text-[clamp(1rem,1.5vw,1.2rem)] font-avantt-medium text-[#f84f3e] mt-2">
@@ -254,16 +290,22 @@ const Contact = () => {
 
           {/* Email Field */}
           <div className="relative">
+            <label
+              htmlFor="email"
+              className="block text-[clamp(0.875rem,1.5vw,1rem)] font-avantt-medium text-(--primary-text-color)/70 uppercase tracking-wider mb-2"
+            >
+              Email
+            </label>
             <input
               type="email"
+              id="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
               required
-              placeholder="Your Email"
               className={`w-full bg-transparent border-b-2 ${
-                fieldErrors.email ? 'border-[#f84f3e]' : 'border-[#fee9ce]/30'
-              } py-4 text-[clamp(1.5rem,3vw,2.5rem)] font-avantt-medium text-[#fee9ce] placeholder:text-[#fee9ce]/40 focus:border-(--header-text-color) focus:outline-none transition-colors duration-300 [&:-webkit-autofill]:[-webkit-text-fill-color:#fee9ce] [&:-webkit-autofill]:[-webkit-box-shadow:0_0_0_1000px_transparent_inset] [&:-webkit-autofill]:bg-transparent`}
+                fieldErrors.email ? "border-[#f84f3e]" : "border-[#fee9ce]/30"
+              } py-4 font-avantt-medium text-(--primary-text-color)  placeholder:text-(--primary-text-color)/40 focus:border-(--header-text-color) focus:outline-none transition-colors duration-300 [&:-webkit-autofill]:[-webkit-text-fill-color:#fee9ce] [&:-webkit-autofill]:[-webkit-box-shadow:0_0_0_1000px_transparent_inset] [&:-webkit-autofill]:bg-transparent`}
             />
             {fieldErrors.email && (
               <p className="text-[clamp(1rem,1.5vw,1.2rem)] font-avantt-medium text-[#f84f3e] mt-2">
@@ -274,16 +316,22 @@ const Contact = () => {
 
           {/* Subject Field */}
           <div className="relative">
+            <label
+              htmlFor="subject"
+              className="block text-[clamp(0.875rem,1.5vw,1rem)] font-avantt-medium text-(--primary-text-color)/70 uppercase tracking-wider mb-2"
+            >
+              Subject
+            </label>
             <input
               type="text"
+              id="subject"
               name="subject"
               value={formData.subject}
               onChange={handleChange}
               required
-              placeholder="Subject"
               className={`w-full bg-transparent border-b-2 ${
-                fieldErrors.subject ? 'border-[#f84f3e]' : 'border-[#fee9ce]/30'
-              } py-4 text-[clamp(1.5rem,3vw,2.5rem)] font-avantt-medium text-[#fee9ce] placeholder:text-[#fee9ce]/40 focus:border-(--header-text-color) focus:outline-none transition-colors duration-300 [&:-webkit-autofill]:[-webkit-text-fill-color:#fee9ce] [&:-webkit-autofill]:[-webkit-box-shadow:0_0_0_1000px_transparent_inset] [&:-webkit-autofill]:bg-transparent`}
+                fieldErrors.subject ? "border-[#f84f3e]" : "border-[#fee9ce]/30"
+              } py-4 font-avantt-medium text-(--primary-text-color)  placeholder:text-(--primary-text-color)/40 focus:border-(--header-text-color) focus:outline-none transition-colors duration-300 [&:-webkit-autofill]:[-webkit-text-fill-color:#fee9ce] [&:-webkit-autofill]:[-webkit-box-shadow:0_0_0_1000px_transparent_inset] [&:-webkit-autofill]:bg-transparent`}
             />
             {fieldErrors.subject && (
               <p className="text-[clamp(1rem,1.5vw,1.2rem)] font-avantt-medium text-[#f84f3e] mt-2">
@@ -294,16 +342,22 @@ const Contact = () => {
 
           {/* Message Field */}
           <div className="relative">
+            <label
+              htmlFor="message"
+              className="block text-[clamp(0.875rem,1.5vw,1rem)] font-avantt-medium text-(--primary-text-color)/70 uppercase tracking-wider mb-2"
+            >
+              Message
+            </label>
             <textarea
+              id="message"
               name="message"
               value={formData.message}
               onChange={handleChange}
               required
-              placeholder="Your Message"
-              rows={6}
+              rows={3}
               className={`w-full bg-transparent border-b-2 ${
-                fieldErrors.message ? 'border-[#f84f3e]' : 'border-[#fee9ce]/30'
-              } py-4 text-[clamp(1.5rem,3vw,2.5rem)] font-avantt-medium text-[#fee9ce] placeholder:text-[#fee9ce]/40 focus:border-(--header-text-color) focus:outline-none transition-colors duration-300 resize-none [&:-webkit-autofill]:[-webkit-text-fill-color:#fee9ce] [&:-webkit-autofill]:[-webkit-box-shadow:0_0_0_1000px_transparent_inset] [&:-webkit-autofill]:bg-transparent`}
+                fieldErrors.message ? "border-[#f84f3e]" : "border-[#fee9ce]/30"
+              } py-4 font-avantt-medium text-(--primary-text-color)  placeholder:text-(--primary-text-color)/40 focus:border-(--header-text-color) focus:outline-none transition-colors duration-300 resize-none [&:-webkit-autofill]:[-webkit-text-fill-color:#fee9ce] [&:-webkit-autofill]:[-webkit-box-shadow:0_0_0_500px_transparent_inset] [&:-webkit-autofill]:bg-transparent`}
             />
             {fieldErrors.message && (
               <p className="text-[clamp(1rem,1.5vw,1.2rem)] font-avantt-medium text-[#f84f3e] mt-2">
@@ -317,8 +371,7 @@ const Contact = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="group relative px-12 py-6 bg-[#f84f3e] text-white text-[clamp(1.5rem,2.5vw,2rem)] font-avantt-heavy uppercase tracking-tight overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 hover:bg-[#fee9ce] hover:text-[#f84f3e]"
-            >
+              className="group relative px-5 py-3 bg-(--header-text-color) hover:rounded-lg text-[#0a0a0a] text-[clamp(1.5rem,2.5vw,2rem)] font-avantt-heavy uppercase tracking-tight overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 hover:bg-[#b08d5e] hover:text-[#0a0a0a]">
               <span className="relative z-10">
                 {isSubmitting ? "Sending..." : "Send Message"}
               </span>

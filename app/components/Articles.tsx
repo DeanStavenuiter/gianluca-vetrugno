@@ -124,6 +124,43 @@ const Articles = () => {
     };
   }, []);
 
+  // Animate article rows one by one on scroll
+  useEffect(() => {
+    const listElement = listRef.current;
+    if (!listElement) return;
+
+    const rows = listElement.querySelectorAll("li");
+
+    // Set initial state (hidden)
+    gsap.set(rows, {
+      opacity: 0,
+      y: 40,
+    });
+
+    // Create scroll-triggered staggered animation
+    gsap.to(rows, {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      ease: "power3.out",
+      stagger: 0.1,
+      scrollTrigger: {
+        trigger: listElement,
+        start: "top 75%",
+        end: "bottom 20%",
+        toggleActions: "play none none reverse",
+      },
+    });
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => {
+        if (trigger.trigger === listElement) {
+          trigger.kill();
+        }
+      });
+    };
+  }, []);
+
   useEffect(() => {
     const listElement = listRef.current;
     const mediaContainer = mediaContainerRef.current;
@@ -234,7 +271,7 @@ const Articles = () => {
       <div ref={containerRef} className="">
         <h2
           ref={titleRef}
-          className="text-[clamp(2.5rem,8vw,6rem)] font-avantt-medium uppercase text-(--header-text-color) pl-4 md:pl-6 opacity-70 tracking-wide"
+          className="text-[clamp(2.5rem,8vw,4rem)] font-avantt-medium uppercase text-(--header-text-color) pl-4 md:pl-6 opacity-70 tracking-wide"
         >
           Featured in
         </h2>
@@ -248,7 +285,7 @@ const Articles = () => {
             >
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                 <div className="flex-1">
-                  <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-(--primary-text-color)">
+                  <h3 className="text-xl font-bold text-(--primary-text-color) text-[clamp(1.1rem,2vw,1.5rem)]">
                     {article.title}
                   </h3>
                 </div>

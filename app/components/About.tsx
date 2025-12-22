@@ -67,9 +67,9 @@ const About = () => {
     >
       <div
         ref={contentRef}
-        className="flex flex-col items-center space-y-12 max-w-4xl mx-auto"
+        className="flex flex-col items-center space-y-12 max-w-3xl mx-auto"
       >
-        <h2 className="text-[clamp(2.5rem,8vw,4rem)] tracking-tighter font-avantt-heavy uppercase text-(--header-text-color) pl-4 md:pl-6 opacity-70">
+        <h2 className="text-[clamp(2.5rem,8vw,4rem)] tracking-wide font-avantt-heavy uppercase text-(--header-text-color) pl-4 md:pl-6 opacity-70">
           About
         </h2>
         <div className="paragraph-wrapper relative z-10 text-center mb-12 max-w-3xl">
@@ -83,9 +83,9 @@ const About = () => {
           </p>
         </div>
 
-        <ul className="relative z-10 text-center space-y-6 w-full max-w-xl text-(--secondary-text-color) ">
+        <ul className="relative z-10 text-center space-y-6 w-full max-w-xl text-(--secondary-text-color) text-[clamp(1.1rem,2vw,1.5rem)]">
           <li className="about-list-item flex items-start gap-4">
-            <span className="text-[clamp(1.1rem,2vw,1.5rem)] leading-[1.3] font-avantt-regular">
+            <span className=" leading-[1.3] font-avantt-regular">
               <span className="text-(--secondary-text-color) opacity-90">
                 Over a decade working and training in
               </span>{" "}
@@ -95,7 +95,7 @@ const About = () => {
             </span>
           </li>
           <li className="about-list-item flex items-start gap-4">
-            <span className="text-[clamp(1.1rem,2vw,1.5rem)] leading-[1.3] font-avantt-regular">
+            <span className=" leading-[1.3] font-avantt-regular">
               <span className="text-(--primary-text-color) opacity-75">
                 Sous Chef
               </span>{" "}
@@ -106,7 +106,7 @@ const About = () => {
             </span>
           </li>
           <li className="about-list-item flex items-start gap-4">
-            <span className="text-[clamp(1.1rem,2vw,1.5rem)] leading-[1.3] font-avantt-regular">
+            <span className=" leading-[1.3] font-avantt-regular">
               <span className="text-(--primary-text-color) opacity-75">
                 Head Chef
               </span>{" "}
@@ -116,7 +116,7 @@ const About = () => {
             </span>
           </li>
           <li className="about-list-item flex items-start gap-4">
-            <span className="text-[clamp(1.1rem,2vw,1.5rem)] leading-[1.3] font-avantt-regular">
+            <span className=" leading-[1.3] font-avantt-regular">
               Currently{" "}
               <span className="text-(--primary-text-color) opacity-75">
                 Assistant Executive Chef
@@ -139,6 +139,11 @@ const About = () => {
             connect, and share.
           </p>
 
+          <p className="mt-4 text-[clamp(1rem,1.4vw,1.25rem)] leading-relaxed font-avantt-regular text-(--secondary-text-color)">
+            Three editions have already been hosted, bringing together
+            experiences, craftsmanship, and a growing community around natural
+            cuisine and beverages.
+          </p>
           <Link
             href="https://naturaleantwerp.com/"
             target="_blank"
@@ -147,12 +152,6 @@ const About = () => {
           >
             Explore Naturale
           </Link>
-
-          <p className="mt-4 text-[clamp(1rem,1.4vw,1.25rem)] leading-relaxed font-avantt-regular text-(--secondary-text-color)">
-            Three editions have already been hosted, bringing together
-            experiences, craftsmanship, and a growing community around natural
-            cuisine and beverages.
-          </p>
         </div>
       </div>
     </div>
