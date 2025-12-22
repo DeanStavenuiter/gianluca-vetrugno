@@ -243,7 +243,7 @@ const Contact = () => {
         {/* Heading */}
         <h2
           ref={headingRef}
-          className="text-[clamp(2.5rem,8vw,4rem)] leading-[0.9] font-avantt-medium uppercase text-(--header-text-color) mb-16 opacity-70 tracking-wide"
+          className="text-[clamp(2.5rem,8vw,4rem)] leading-[0.9] font-avantt-heavy uppercase text-(--header-text-color) mb-16 tracking-[0.12em]"
         >
           Let&apos;s talk
         </h2>

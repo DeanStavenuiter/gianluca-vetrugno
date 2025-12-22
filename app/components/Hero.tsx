@@ -199,13 +199,13 @@ const Hero = () => {
       </h1>
       <div
         ref={taglineRef}
-        className="absolute bottom-[15px] left-[15px] sm:left-[20px] md:left-[30px] z-10 opacity-0 gap-1"
+        className="absolute bottom-[clamp(4rem,18vw,7rem)] left-[15px] right-[15px] sm:left-[20px] sm:right-auto md:bottom-[15px] md:left-[30px] md:right-auto z-10 opacity-0 flex flex-col gap-2 max-w-[24rem]"
       >
-        <p className="text-(--primary-text-color) text-[clamp(0.875rem,2vw,1.125rem)] leading-snug font-avantt-medium flex flex-col ">
+        <p className="text-(--primary-text-color) text-[clamp(0.95rem,2.2vw,1.15rem)] leading-[1.15] font-avantt-medium flex flex-col drop-shadow-[0_2px_10px_rgba(0,0,0,0.65)]">
           <span>Seasonal, intuitive cooking</span>
           <span>rooted in experience</span>
         </p>
-        <p className="text-(--primary-text-color)/60 uppercase text-[clamp(0.75rem,1.5vw,0.875rem)] leading-[1.4] font-avantt-medium mt-2 tracking-wide">
+        <p className="text-(--primary-text-color)/75 uppercase text-[clamp(0.75rem,1.6vw,0.875rem)] leading-[1.3] font-avantt-medium tracking-[0.18em] drop-shadow-[0_2px_10px_rgba(0,0,0,0.65)]">
           Creative chef
         </p>
       </div>

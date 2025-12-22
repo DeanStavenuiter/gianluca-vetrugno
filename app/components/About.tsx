@@ -69,7 +69,7 @@ const About = () => {
         ref={contentRef}
         className="flex flex-col items-center space-y-12 max-w-3xl mx-auto"
       >
-        <h2 className="text-[clamp(2.5rem,8vw,4rem)] tracking-wide font-avantt-heavy uppercase text-(--header-text-color) pl-4 md:pl-6 opacity-70">
+        <h2 className="text-[clamp(2.5rem,8vw,4rem)] tracking-[0.12em] font-avantt-heavy uppercase text-(--header-text-color) pl-4 md:pl-6">
           About
         </h2>
         <div className="paragraph-wrapper relative z-10 text-center mb-12 max-w-3xl">

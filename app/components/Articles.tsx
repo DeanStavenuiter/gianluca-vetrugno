@@ -271,9 +271,9 @@ const Articles = () => {
       <div ref={containerRef} className="">
         <h2
           ref={titleRef}
-          className="text-[clamp(2.5rem,8vw,4rem)] font-avantt-medium uppercase text-(--header-text-color) pl-4 md:pl-6 opacity-70 tracking-wide"
+          className="text-[clamp(2.5rem,8vw,4rem)] font-avantt-heavy uppercase text-(--header-text-color) pl-4 md:pl-6 tracking-[0.12em]"
         >
-          Featured in
+          Press
         </h2>
 
         <ul ref={listRef} className="font-avantt-regular">
@@ -285,7 +285,7 @@ const Articles = () => {
             >
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                 <div className="flex-1">
-                  <h3 className="text-xl font-bold text-(--primary-text-color) text-[clamp(1.1rem,2vw,1.5rem)]">
+                  <h3 className="text-(--primary-text-color) text-[clamp(1.1rem,2vw,1.5rem)] font-avantt-medium tracking-tight leading-snug">
                     {article.title}
                   </h3>
                 </div>

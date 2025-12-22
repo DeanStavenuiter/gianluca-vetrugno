@@ -159,9 +159,9 @@ const Services = () => {
           {/* Header */}
           <h2
             ref={titleRef}
-            className="w-full text-center text-[clamp(2.5rem,8vw,6rem)] tracking-tighter uppercase z-50 relative font-avantt-heavy text-(--header-text-color) px-4"
+            className="w-full text-center text-[clamp(2.5rem,8vw,6rem)] tracking-[0.12em] uppercase z-50 relative font-avantt-heavy text-(--header-text-color) px-4"
           >
-            services
+            Services
           </h2>
 
           {/* Circles with images */}
