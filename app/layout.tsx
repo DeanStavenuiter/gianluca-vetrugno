@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import localFont from "next/font/local";
 import CustomCursor from "./components/CustomCursor";
+import FloatingContactButton from "./components/FloatingContactButton";
 import { Toaster } from "sonner";
 
 const avanttHeavy = localFont({
@@ -50,8 +51,9 @@ export default function RootLayout({
           crossOrigin=""
         />
       </head>
-      <body className={`${avanttHeavy.variable} ${avanttMedium.variable} ${avanttRegular.variable} antialiased bg-black`}>
+      <body className={`${avanttHeavy.variable} ${avanttMedium.variable} ${avanttRegular.variable} antialiased bg-(--background-color)`}>
         <CustomCursor />
+        <FloatingContactButton />
         {children}
         <Toaster 
           position="bottom-right"

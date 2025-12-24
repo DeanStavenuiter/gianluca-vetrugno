@@ -16,8 +16,10 @@
 
 :root {
   --header-text-color: #c5a16f;
-  --primary-text-color: #ffe8cd;
-  --secondary-text-color: #a9a9a9;
+  --primary-text-color: #E8E3D9;
+  --secondary-text-color: #2E4F4F;
+  --secondary-hover-text-color: #1a4d4d;
+  --background-color: #0E0E0E;
 }
 
 @layer base {

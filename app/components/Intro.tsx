@@ -70,9 +70,9 @@ const Intro = () => {
           ease: "none",
           scrollTrigger: {
             trigger: el,
-            start: "top 80%",
-            end: "bottom 85%",
-            scrub: 0.2,
+            start: "top 85%",
+            end: "top 65%",
+            scrub: 0.05,
           },
         }
       );
@@ -88,9 +88,9 @@ const Intro = () => {
           ease: "none",
           scrollTrigger: {
             trigger: el,
-            start: "top 80%",
-            end: "bottom 85%",
-            scrub: 0.2,
+            start: "top 85%",
+            end: "top 65%",
+            scrub: 0.05,
           },
         }
       );
@@ -106,9 +106,9 @@ const Intro = () => {
           ease: "none",
           scrollTrigger: {
             trigger: el,
-            start: "top 90%",
-            end: "bottom 85%",
-            scrub: 0.2,
+            start: "top 85%",
+            end: "top 65%",
+            scrub: 0.05,
           },
         }
       );
@@ -131,7 +131,7 @@ const Intro = () => {
       <div ref={paragraphsContainerRef} className="flex flex-col items-center space-y-12 max-w-4xl mx-auto">
         {paragraphs.map((text, index) => (
           <div key={index} className="paragraph-wrapper relative z-10 text-center">
-            <p className="text-[clamp(1.5rem,3vw,4rem)] leading-relaxedfont-light font-avantt-medium [&>span]:inline-block [&>span]:whitespace-nowrap">
+            <p className="text-[clamp(1.5rem,3vw,3.7rem)] leading-relaxedfont-light font-avantt-medium [&>span]:inline-block [&>span]:whitespace-nowrap">
               {text}
             </p>
           </div>

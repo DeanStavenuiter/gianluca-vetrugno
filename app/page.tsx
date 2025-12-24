@@ -3,34 +3,37 @@ import Intro from "./components/Intro";
 import Services from "./components/Services";
 import Articles from "./components/Articles";
 import About from "./components/About";
-import Navigation from "./components/Navigation";
-import Contact from "./components/Contact";
+// import Navigation from "./components/Navigation";
+// import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import BridgeLine from "./components/BridgeLine";
 import Outro from "./components/Outro";
+import Services2 from "./components/Services2";
+import ImageGallery from "./components/ImageGallery";
 
 export default function Home() {
   return (
     <div>
       {/* <Navigation /> */}
+      <Hero />
       <div data-section="intro">
-        <Hero />
-      </div>
-      <div data-section="about">
         <Intro />
         <BridgeLine />
       </div>
       <div data-section="services">
-        <Services />
+        <Services2 />
+      </div>
+      <div data-section="about">
+        <About />
       </div>
       <div data-section="articles">
-        <About />
         <Articles />
       </div>
-      <div data-section="contact">
-        <Contact />
-        <Outro />
-      </div>
+      <ImageGallery />
+      {/* <div data-section="contact"> */}
+      {/* <Contact /> */}
+      <Outro />
+      {/* </div> */}
       <Footer />
     </div>
   );

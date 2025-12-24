@@ -34,9 +34,9 @@ const BridgeLine = () => {
   }, []);
 
   return (
-    <div ref={textRef} className="max-w-sm px-4 md:px-0 md:max-w-lg mx-auto mt-10 text-center opacity-0 mb-50">
+    <div ref={textRef} className="max-w-sm px-4 md:px-0 md:max-w-lg mx-auto mt-10 text-center opacity-0 mb-18">
       <p className="text-(--primary-text-color) text-[clamp(0.875rem,1vw,1rem)] leading-relaxed font-avantt-regular">
-        This approach shapes everything I do, from intimate private dinners to
+        This approach shapes <span className="font-avantt-heavy">everything</span> I do, from intimate private dinners to
         collaborations and large-scale events.
       </p>
     </div>

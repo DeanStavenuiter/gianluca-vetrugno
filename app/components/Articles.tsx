@@ -177,9 +177,14 @@ const Articles = () => {
       ease: "power4",
     });
 
+    // Ensure the container starts in a visible viewport position (even before first mousemove)
+    let lastMouseY = window.innerHeight / 2;
+    gsap.set(mediaContainer, { y: lastMouseY });
+
     // Show media container on list hover
     const handleMouseEnter = () => {
       mediaContainer.style.visibility = "visible";
+      yTo(lastMouseY);
     };
 
     const handleMouseLeave = () => {
@@ -189,7 +194,8 @@ const Articles = () => {
     };
 
     const handleMouseMove = (e: MouseEvent) => {
-      yTo(e.clientY); // Track vertical position only
+      lastMouseY = e.clientY;
+      yTo(lastMouseY); // Track vertical position only
     };
 
     listElement.addEventListener("mouseenter", handleMouseEnter);
@@ -267,7 +273,7 @@ const Articles = () => {
   }, []);
 
   return (
-    <section className="min-h-screen w-full">
+    <section className="w-full">
       <div ref={containerRef} className="">
         <h2
           ref={titleRef}
@@ -275,6 +281,22 @@ const Articles = () => {
         >
           Press
         </h2>
+
+        {/* Shared media container for hover effect (kept OUTSIDE animated rows) */}
+        <div
+          ref={mediaContainerRef}
+          className="hidden md:block fixed pointer-events-none z-50 rounded-lg"
+          style={{
+            width: "24vw",
+            height: "24vw",
+            right: "23vw",
+            top: 0,
+            overflow: "hidden",
+            visibility: "hidden",
+          }}
+        >
+          {/* Images will be dynamically added here */}
+        </div>
 
         <ul ref={listRef} className="font-avantt-regular">
           {articles.map((article, index) => (
@@ -290,24 +312,9 @@ const Articles = () => {
                   </h3>
                 </div>
                 <div className="flex items-center gap-4 md:gap-8">
-                  <span className="text-sm md:text-base font-semibold whitespace-nowrap text-(--secondary-text-color) group-hover:text-(--primary-text-color) transition-colors duration-300">
+                  <span className="text-sm md:text-base font-semibold whitespace-nowrap text-(--primary-text-color)/80 group-hover:text-(--secondary-text-color) transition-colors duration-300">
                     {article.publication}
                   </span>
-                  {/* Media container for hover effect - hidden on mobile */}
-                  <div
-                    ref={mediaContainerRef}
-                    className="hidden md:block fixed pointer-events-none z-50 rounded-lg"
-                    style={{
-                      width: "24vw",
-                      height: "24vw",
-                      right: "23vw",
-                      top: 0,
-                      overflow: "hidden",
-                      visibility: "hidden",
-                    }}
-                  >
-                    {/* Images will be dynamically added here */}
-                  </div>
                   <span className="text-sm text-(--primary-text-color) md:text-base whitespace-nowrap md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
                     Read article{" "}
                     <span className="hidden md:inline-block -rotate-45">→</span>

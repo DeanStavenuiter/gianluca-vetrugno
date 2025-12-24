@@ -60,50 +60,53 @@ const Contact = () => {
     if (!headingRef.current) return;
 
     const titleElement = headingRef.current;
-    const title = new SplitText(titleElement, { type: "chars" });
+    let title: SplitText | null = null;
 
-    // Set initial state (hidden)
-    gsap.set(title.chars, {
-      opacity: 0,
-      y: -50,
-    });
+    const ctx = gsap.context(() => {
+      title = new SplitText(titleElement, { type: "chars" });
 
-    // Create scroll-triggered animation
-    gsap.to(title.chars, {
-      opacity: 1,
-      y: 0,
-      ease: "back.out(1.7)",
-      stagger: {
-        from: "center",
-        each: 0.06,
-      },
-      scrollTrigger: {
-        trigger: titleElement,
-        start: "top 70%",
-        end: "bottom 20%",
-        toggleActions: "play none none reverse",
-      },
-    });
-
-    // Cleanup function
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => {
-        if (trigger.trigger === titleElement) {
-          trigger.kill();
-        }
+      // Set initial state (hidden)
+      gsap.set(title.chars, {
+        opacity: 0,
+        y: -50,
       });
+
+      // Create scroll-triggered animation (also runs on load if already in view)
+      gsap.to(title.chars, {
+        opacity: 1,
+        y: 0,
+        ease: "back.out(1.7)",
+        stagger: {
+          from: "center",
+          each: 0.06,
+        },
+        scrollTrigger: {
+          trigger: titleElement,
+          start: "top 85%",
+          end: "bottom 20%",
+          toggleActions: "play none none reverse",
+        },
+      });
+    }, containerRef);
+
+    return () => {
+      title?.revert();
+      ctx.revert();
     };
   }, []);
 
   // Animate form fields and labels
   useEffect(() => {
-    if (formRef.current) {
-      const fields = formRef.current.querySelectorAll(
-        "input, textarea, button"
-      );
-      const labels = formRef.current.querySelectorAll("label");
+    if (!formRef.current) return;
 
-      // Animate labels with a slide-in from left effect
+    const ctx = gsap.context(() => {
+      const formEl = formRef.current;
+      if (!formEl) return;
+
+      const fields = formEl.querySelectorAll("input, textarea, button");
+      const labels = formEl.querySelectorAll("label");
+
+      // Non-scrub "enter" animations so they work on page load (e.g. /contact)
       gsap.fromTo(
         labels,
         {
@@ -117,15 +120,13 @@ const Contact = () => {
           stagger: 0.15,
           ease: "power3.out",
           scrollTrigger: {
-            trigger: formRef.current,
-            start: "top 80%",
-            end: "top 60%",
-            scrub: 1,
+            trigger: formEl,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
           },
         }
       );
 
-      // Animate form fields
       gsap.fromTo(
         fields,
         {
@@ -139,17 +140,16 @@ const Contact = () => {
           stagger: 0.1,
           ease: "power2.out",
           scrollTrigger: {
-            trigger: formRef.current,
-            start: "top 75%",
-            end: "top 50%",
-            scrub: 1,
+            trigger: formEl,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
           },
         }
       );
-    }
+    }, containerRef);
 
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      ctx.revert();
     };
   }, []);
 
@@ -239,7 +239,7 @@ const Contact = () => {
       ref={containerRef}
       className="relative z-10 w-full py-20 px-6 md:px-12 lg:px-24 overflow-x-hidden"
     >
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-2xl mx-auto">
         {/* Heading */}
         <h2
           ref={headingRef}
@@ -371,7 +371,7 @@ const Contact = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="group relative px-5 py-3 bg-(--header-text-color) hover:rounded-lg text-[#0a0a0a] text-[clamp(1.5rem,2.5vw,2rem)] font-avantt-heavy uppercase tracking-tight overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 hover:bg-[#b08d5e] hover:text-[#0a0a0a]">
+              className="group relative px-5 py-3 bg-(--header-text-color) hover:rounded-lg text-[#0a0a0a] text-[clamp(1.5rem,2.5vw,2rem)] font-avantt-heavy uppercase tracking-tight overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed transition-[border-radius,background-color,transform,box-shadow] duration-500 ease-out hover:bg-[#b08d5e] hover:text-[#0a0a0a] hover:-translate-y-px hover:shadow-[0_12px_30px_rgba(0,0,0,0.35)]">
               <span className="relative z-10">
                 {isSubmitting ? "Sending..." : "Send Message"}
               </span>

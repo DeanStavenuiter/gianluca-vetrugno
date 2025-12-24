@@ -169,7 +169,7 @@ const Hero = () => {
       ref={containerRef}
       className="overflow-hidden max-h-dvh w-full h-dvh relative"
     >
-      <div ref={imageRef} className="absolute inset-0 w-full h-full">
+      <div ref={imageRef} className="absolute inset-0 w-full h-full bg-black">
         <Image
           src="https://gianluca-vetrugno.s3.eu-west-3.amazonaws.com/gianluca/gianluca-vetrugno-full.webp"
           alt="Hero"
@@ -205,7 +205,7 @@ const Hero = () => {
           <span>Seasonal, intuitive cooking</span>
           <span>rooted in experience</span>
         </p>
-        <p className="text-(--primary-text-color)/75 uppercase text-[clamp(0.75rem,1.6vw,0.875rem)] leading-[1.3] font-avantt-medium tracking-[0.18em] drop-shadow-[0_2px_10px_rgba(0,0,0,0.65)]">
+        <p className="text-(--primary-text-color)/75 underline underline-offset-2 decoration-(--secondary-text-color) uppercase text-[clamp(0.75rem,1.6vw,0.875rem)] leading-[1.3] font-avantt-medium tracking-[0.18em] drop-shadow-[0_2px_10px_rgba(0,0,0,0.65)]">
           Creative chef
         </p>
       </div>
