@@ -30,10 +30,7 @@ export default function Home() {
         <Articles />
       </div>
       <ImageGallery />
-      {/* <div data-section="contact"> */}
-      {/* <Contact /> */}
       <Outro />
-      {/* </div> */}
       <Footer />
     </div>
   );
