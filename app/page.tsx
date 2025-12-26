@@ -1,6 +1,5 @@
 import Hero from "./components/Hero";
 import Intro from "./components/Intro";
-import Services from "./components/Services";
 import Articles from "./components/Articles";
 import About from "./components/About";
 // import Navigation from "./components/Navigation";
@@ -30,7 +29,9 @@ export default function Home() {
         <Articles />
       </div>
       <ImageGallery />
-      <Contact />
+      <div id="contact" data-section="contact">
+        <Contact />
+      </div>
       <Outro />
       <Footer />
     </div>

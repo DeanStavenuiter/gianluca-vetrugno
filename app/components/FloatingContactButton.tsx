@@ -12,6 +12,7 @@ const FloatingContactButton = () => {
 
   // Don't show on contact page
   const isContactPage = pathname === "/contact";
+  const isHomePage = pathname === "/";
 
   useEffect(() => {
     if (isContactPage) return;
@@ -62,9 +63,17 @@ const FloatingContactButton = () => {
   return (
     <Link
       ref={buttonRef}
-      href="/contact"
+      href="/#contact"
       className="fixed bottom-8 right-8 z-50 group opacity-0"
-      aria-label="Go to contact page"
+      aria-label="Scroll to contact form"
+      onClick={(e) => {
+        // Smooth-scroll when we're already on the homepage.
+        // If we're on another route, allow navigation to "/#contact".
+        if (!isHomePage) return;
+        e.preventDefault();
+        const contactEl = document.getElementById("contact");
+        contactEl?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }}
     >
       <div className="relative flex items-center gap-3 rounded-lg bg-(--secondary-text-color) px-6 py-4 transition-all duration-300 hover:bg-(--secondary-hover-text-color) hover:shadow-[0_0_30px_rgba(46,79,79,0.5)]">
         {/* Decorative corner accent */}

@@ -75,13 +75,6 @@ const Footer = () => {
     };
   }, []);
 
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
-
   const scrollToSection = (sectionId: string) => {
     // If not on main page, navigate to main page with section hash
     if (!isMainPage) {
@@ -131,8 +124,13 @@ const Footer = () => {
                 link.id === "contact" ? (
                   <Link
                     key={link.id}
-                    href="/contact"
+                    href="/#contact"
                     className="text-left text-(--primary-text-color) hover:text-(--secondary-text-color) text-[clamp(0.875rem,1.2vw,1rem)] font-avantt-medium uppercase tracking-tight transition-colors duration-300"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const contactEl = document.getElementById("contact");
+                      contactEl?.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }}
                   >
                     {link.name}
                   </Link>
@@ -206,27 +204,6 @@ const Footer = () => {
               </Link>
             </p>
           </div>
-          {/* {isMainPage ? (
-            <button
-              onClick={scrollToTop}
-              className="text-(--secondary-text-color) hover:text-(--primary-text-color) text-[clamp(0.875rem,1.2vw,1.125rem)] font-avantt-medium uppercase tracking-tight transition-colors duration-300 flex items-center gap-2 group"
-            >
-              <span>Back to Top</span>
-              <span className="transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1">
-                ↗
-              </span>
-            </button>
-          ) : (
-            <Link
-              href="/"
-              className="text-(--secondary-text-color) hover:text-(--primary-text-color) text-[clamp(0.875rem,1.2vw,1.125rem)] font-avantt-medium uppercase tracking-tight transition-colors duration-300 flex items-center gap-2 group"
-            >
-              <span>Back to Home</span>
-              <span className="transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1">
-                ↗
-              </span>
-            </Link>
-          )} */}
         </div>
       </div>
     </footer>

@@ -237,7 +237,7 @@ const Contact = () => {
   return (
     <div
       ref={containerRef}
-      className="relative z-10 w-full py-20 px-6 md:px-12 lg:px-24 overflow-x-hidden"
+      className="relative z-10 w-full pt-20 pb-40 px-6 md:px-12 lg:px-24 overflow-x-hidden"
     >
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
