@@ -239,145 +239,248 @@ const Contact = () => {
       ref={containerRef}
       className="relative z-10 w-full py-20 px-6 md:px-12 lg:px-24 overflow-x-hidden"
     >
-      <div className="max-w-2xl mx-auto">
-        {/* Heading */}
-        <h2
-          ref={headingRef}
-          className="text-[clamp(2.5rem,8vw,4rem)] leading-[0.9] font-avantt-heavy uppercase text-(--header-text-color) mb-16 tracking-[0.12em]"
-        >
-          Let&apos;s talk
-        </h2>
+      <div className="max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          {/* Left: Title + details */}
+          <div className="lg:col-span-5">
+            <p className="text-(--header-text-color)/80 text-[clamp(0.75rem,1vw,0.875rem)] font-avantt-medium uppercase tracking-[0.22em]">
+              Contact
+            </p>
 
-        {/* Contact Form */}
-        <form ref={formRef} onSubmit={handleSubmit} className="space-y-8">
-          {/* Honeypot Field - Hidden from users, visible to bots */}
-          <input
-            type="text"
-            name="honey"
-            value={formData.honey}
-            onChange={handleChange}
-            tabIndex={-1}
-            autoComplete="nope"
-            className="absolute -left-[9999px] opacity-0 pointer-events-none h-0 w-0"
-            aria-hidden="true"
-          />
-
-          {/* Name Field */}
-          <div className="relative">
-            <label
-              htmlFor="name"
-              className="block text-[clamp(0.875rem,1.5vw,1rem)] font-avantt-medium text-(--primary-text-color)/70 uppercase tracking-wider mb-2"
+            {/* Heading */}
+            <h2
+              ref={headingRef}
+              className="text-[clamp(2.5rem,8vw,4rem)] leading-[0.9] font-avantt-heavy uppercase text-(--header-text-color) mt-3 tracking-[0.12em]"
             >
-              Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-              className={`w-full bg-transparent border-b-2 ${
-                fieldErrors.name ? "border-[#f84f3e]" : "border-[#fee9ce]/30"
-              } py-4 font-avantt-medium text-(--primary-text-color)  placeholder:text-(--primary-text-color)/40 focus:border-(--header-text-color) focus:outline-none transition-colors duration-300 [&:-webkit-autofill]:[-webkit-text-fill-color:#fee9ce] [&:-webkit-autofill]:[-webkit-box-shadow:0_0_0_1000px_transparent_inset] [&:-webkit-autofill]:bg-transparent`}
-            />
-            {fieldErrors.name && (
-              <p className="text-[clamp(1rem,1.5vw,1.2rem)] font-avantt-medium text-[#f84f3e] mt-2">
-                {fieldErrors.name}
+              Let&apos;s talk
+            </h2>
+
+            <p className="mt-6 text-[clamp(1rem,1.4vw,1.25rem)] leading-relaxed font-avantt-regular text-(--primary-text-color)/80 max-w-xl">
+              Whether it&apos;s a private dinner, an event, or a collaboration —
+              share a few details and I&apos;ll get back to you.
+            </p>
+
+            <div className="mt-10 pt-8 border-t border-(--secondary-text-color)/30 space-y-4 max-w-xl">
+              <div>
+                <p className="text-(--header-text-color)/80 text-[clamp(0.875rem,1.2vw,1rem)] font-avantt-heavy uppercase tracking-tight">
+                  Email
+                </p>
+                <a
+                  href="mailto:info@gianluca-vetrugno.com"
+                  className="text-(--primary-text-color) hover:text-(--secondary-text-color) text-[clamp(0.95rem,1.2vw,1.05rem)] font-avantt-medium transition-colors duration-300"
+                >
+                  info@gianluca-vetrugno.com
+                </a>
+              </div>
+
+              <div>
+                <p className="text-(--header-text-color)/80 text-[clamp(0.875rem,1.2vw,1rem)] font-avantt-heavy uppercase tracking-tight">
+                  Location
+                </p>
+                <p className="text-(--primary-text-color) text-[clamp(0.95rem,1.2vw,1.05rem)] font-avantt-medium">
+                  Antwerp, Belgium
+                </p>
+              </div>
+
+              <p className="text-(--primary-text-color)/60 text-[clamp(0.875rem,1.1vw,1rem)] font-avantt-regular leading-relaxed">
+                You can also reach out via email. The more context you share,
+                the better I can respond.
               </p>
-            )}
+            </div>
           </div>
 
-          {/* Email Field */}
-          <div className="relative">
-            <label
-              htmlFor="email"
-              className="block text-[clamp(0.875rem,1.5vw,1rem)] font-avantt-medium text-(--primary-text-color)/70 uppercase tracking-wider mb-2"
-            >
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              className={`w-full bg-transparent border-b-2 ${
-                fieldErrors.email ? "border-[#f84f3e]" : "border-[#fee9ce]/30"
-              } py-4 font-avantt-medium text-(--primary-text-color)  placeholder:text-(--primary-text-color)/40 focus:border-(--header-text-color) focus:outline-none transition-colors duration-300 [&:-webkit-autofill]:[-webkit-text-fill-color:#fee9ce] [&:-webkit-autofill]:[-webkit-box-shadow:0_0_0_1000px_transparent_inset] [&:-webkit-autofill]:bg-transparent`}
-            />
-            {fieldErrors.email && (
-              <p className="text-[clamp(1rem,1.5vw,1.2rem)] font-avantt-medium text-[#f84f3e] mt-2">
-                {fieldErrors.email}
-              </p>
-            )}
-          </div>
+          {/* Right: Form panel */}
+          <div className="lg:col-span-7">
+            <div className="relative rounded-2xl border border-(--secondary-text-color)/30 bg-white/5 backdrop-blur-sm p-6 md:p-8">
+              {/* Contact Form */}
+              <form
+                ref={formRef}
+                onSubmit={handleSubmit}
+                noValidate
+                className="space-y-7"
+              >
+                {/* Honeypot Field - Hidden from users, visible to bots */}
+                <input
+                  type="text"
+                  name="honey"
+                  value={formData.honey}
+                  onChange={handleChange}
+                  tabIndex={-1}
+                  autoComplete="nope"
+                  className="absolute -left-[9999px] opacity-0 pointer-events-none h-0 w-0"
+                  aria-hidden="true"
+                />
 
-          {/* Subject Field */}
-          <div className="relative">
-            <label
-              htmlFor="subject"
-              className="block text-[clamp(0.875rem,1.5vw,1rem)] font-avantt-medium text-(--primary-text-color)/70 uppercase tracking-wider mb-2"
-            >
-              Subject
-            </label>
-            <input
-              type="text"
-              id="subject"
-              name="subject"
-              value={formData.subject}
-              onChange={handleChange}
-              required
-              className={`w-full bg-transparent border-b-2 ${
-                fieldErrors.subject ? "border-[#f84f3e]" : "border-[#fee9ce]/30"
-              } py-4 font-avantt-medium text-(--primary-text-color)  placeholder:text-(--primary-text-color)/40 focus:border-(--header-text-color) focus:outline-none transition-colors duration-300 [&:-webkit-autofill]:[-webkit-text-fill-color:#fee9ce] [&:-webkit-autofill]:[-webkit-box-shadow:0_0_0_1000px_transparent_inset] [&:-webkit-autofill]:bg-transparent`}
-            />
-            {fieldErrors.subject && (
-              <p className="text-[clamp(1rem,1.5vw,1.2rem)] font-avantt-medium text-[#f84f3e] mt-2">
-                {fieldErrors.subject}
-              </p>
-            )}
-          </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
+                  {/* Name Field */}
+                  <div className="relative">
+                    <label
+                      htmlFor="name"
+                      className="block text-[clamp(0.875rem,1.2vw,1rem)] font-avantt-medium text-(--primary-text-color)/70 uppercase tracking-wider mb-2"
+                    >
+                      Name
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      placeholder="Your name"
+                      autoComplete="name"
+                      aria-invalid={fieldErrors.name ? "true" : "false"}
+                      aria-describedby={
+                        fieldErrors.name ? "name-error" : undefined
+                      }
+                      className={`w-full bg-transparent border-b-2 ${
+                        fieldErrors.name
+                          ? "border-[#f84f3e]"
+                          : "border-[#fee9ce]/20"
+                      } py-4 font-avantt-medium text-(--primary-text-color) placeholder:text-(--primary-text-color)/30 focus:border-(--header-text-color) focus:outline-none focus-visible:ring-1 focus-visible:ring-[#c5a16f]/30 transition-[border-color,box-shadow] duration-300 disabled:opacity-60 disabled:cursor-not-allowed [&:-webkit-autofill]:[-webkit-text-fill-color:#fee9ce] [&:-webkit-autofill]:[-webkit-box-shadow:0_0_0_1000px_transparent_inset] [&:-webkit-autofill]:bg-transparent`}
+                      disabled={isSubmitting}
+                    />
+                    {fieldErrors.name && (
+                      <p
+                        id="name-error"
+                        className="text-[clamp(0.95rem,1.2vw,1.05rem)] font-avantt-medium text-[#f84f3e] mt-2"
+                      >
+                        {fieldErrors.name}
+                      </p>
+                    )}
+                  </div>
 
-          {/* Message Field */}
-          <div className="relative">
-            <label
-              htmlFor="message"
-              className="block text-[clamp(0.875rem,1.5vw,1rem)] font-avantt-medium text-(--primary-text-color)/70 uppercase tracking-wider mb-2"
-            >
-              Message
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              required
-              rows={3}
-              className={`w-full bg-transparent border-b-2 ${
-                fieldErrors.message ? "border-[#f84f3e]" : "border-[#fee9ce]/30"
-              } py-4 font-avantt-medium text-(--primary-text-color)  placeholder:text-(--primary-text-color)/40 focus:border-(--header-text-color) focus:outline-none transition-colors duration-300 resize-none [&:-webkit-autofill]:[-webkit-text-fill-color:#fee9ce] [&:-webkit-autofill]:[-webkit-box-shadow:0_0_0_500px_transparent_inset] [&:-webkit-autofill]:bg-transparent`}
-            />
-            {fieldErrors.message && (
-              <p className="text-[clamp(1rem,1.5vw,1.2rem)] font-avantt-medium text-[#f84f3e] mt-2">
-                {fieldErrors.message}
-              </p>
-            )}
-          </div>
+                  {/* Email Field */}
+                  <div className="relative">
+                    <label
+                      htmlFor="email"
+                      className="block text-[clamp(0.875rem,1.2vw,1rem)] font-avantt-medium text-(--primary-text-color)/70 uppercase tracking-wider mb-2"
+                    >
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder="Your email"
+                      autoComplete="email"
+                      inputMode="email"
+                      aria-invalid={fieldErrors.email ? "true" : "false"}
+                      aria-describedby={
+                        fieldErrors.email ? "email-error" : undefined
+                      }
+                      className={`w-full bg-transparent border-b-2 ${
+                        fieldErrors.email
+                          ? "border-[#f84f3e]"
+                          : "border-[#fee9ce]/20"
+                      } py-4 font-avantt-medium text-(--primary-text-color) placeholder:text-(--primary-text-color)/30 focus:border-(--header-text-color) focus:outline-none focus-visible:ring-1 focus-visible:ring-[#c5a16f]/30 transition-[border-color,box-shadow] duration-300 disabled:opacity-60 disabled:cursor-not-allowed [&:-webkit-autofill]:[-webkit-text-fill-color:#fee9ce] [&:-webkit-autofill]:[-webkit-box-shadow:0_0_0_1000px_transparent_inset] [&:-webkit-autofill]:bg-transparent`}
+                      disabled={isSubmitting}
+                    />
+                    {fieldErrors.email && (
+                      <p
+                        id="email-error"
+                        className="text-[clamp(0.95rem,1.2vw,1.05rem)] font-avantt-medium text-[#f84f3e] mt-2"
+                      >
+                        {fieldErrors.email}
+                      </p>
+                    )}
+                  </div>
+                </div>
 
-          {/* Submit Button */}
-          <div className="pt-8">
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="group relative px-5 py-3 bg-(--header-text-color) hover:rounded-lg text-[#0a0a0a] text-[clamp(1.5rem,2.5vw,2rem)] font-avantt-heavy uppercase tracking-tight overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed transition-[border-radius,background-color,transform,box-shadow] duration-500 ease-out hover:bg-[#b08d5e] hover:text-[#0a0a0a] hover:-translate-y-px hover:shadow-[0_12px_30px_rgba(0,0,0,0.35)]">
-              <span className="relative z-10">
-                {isSubmitting ? "Sending..." : "Send Message"}
-              </span>
-            </button>
+                {/* Subject Field */}
+                <div className="relative">
+                  <label
+                    htmlFor="subject"
+                    className="block text-[clamp(0.875rem,1.2vw,1rem)] font-avantt-medium text-(--primary-text-color)/70 uppercase tracking-wider mb-2"
+                  >
+                    Subject
+                  </label>
+                  <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    placeholder="Subject"
+                    autoComplete="off"
+                    aria-invalid={fieldErrors.subject ? "true" : "false"}
+                    aria-describedby={
+                      fieldErrors.subject ? "subject-error" : undefined
+                    }
+                    className={`w-full bg-transparent border-b-2 ${
+                      fieldErrors.subject
+                        ? "border-[#f84f3e]"
+                        : "border-[#fee9ce]/20"
+                    } py-4 font-avantt-medium text-(--primary-text-color) placeholder:text-(--primary-text-color)/30 focus:border-(--header-text-color) focus:outline-none focus-visible:ring-1 focus-visible:ring-[#c5a16f]/30 transition-[border-color,box-shadow] duration-300 disabled:opacity-60 disabled:cursor-not-allowed [&:-webkit-autofill]:[-webkit-text-fill-color:#fee9ce] [&:-webkit-autofill]:[-webkit-box-shadow:0_0_0_1000px_transparent_inset] [&:-webkit-autofill]:bg-transparent`}
+                    disabled={isSubmitting}
+                  />
+                  {fieldErrors.subject && (
+                    <p
+                      id="subject-error"
+                      className="text-[clamp(0.95rem,1.2vw,1.05rem)] font-avantt-medium text-[#f84f3e] mt-2"
+                    >
+                      {fieldErrors.subject}
+                    </p>
+                  )}
+                </div>
+
+                {/* Message Field */}
+                <div className="relative">
+                  <label
+                    htmlFor="message"
+                    className="block text-[clamp(0.875rem,1.2vw,1rem)] font-avantt-medium text-(--primary-text-color)/70 uppercase tracking-wider mb-2"
+                  >
+                    Message
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    placeholder="Your message"
+                    rows={5}
+                    aria-invalid={fieldErrors.message ? "true" : "false"}
+                    aria-describedby={
+                      fieldErrors.message ? "message-error" : undefined
+                    }
+                    className={`w-full bg-transparent border-b-2 ${
+                      fieldErrors.message
+                        ? "border-[#f84f3e]"
+                        : "border-[#fee9ce]/20"
+                    } py-4 font-avantt-medium text-(--primary-text-color) placeholder:text-(--primary-text-color)/30 focus:border-(--header-text-color) focus:outline-none focus-visible:ring-1 focus-visible:ring-[#c5a16f]/30 transition-[border-color,box-shadow] duration-300 resize-none disabled:opacity-60 disabled:cursor-not-allowed [&:-webkit-autofill]:[-webkit-text-fill-color:#fee9ce] [&:-webkit-autofill]:[-webkit-box-shadow:0_0_0_500px_transparent_inset] [&:-webkit-autofill]:bg-transparent`}
+                    disabled={isSubmitting}
+                  />
+                  {fieldErrors.message && (
+                    <p
+                      id="message-error"
+                      className="text-[clamp(0.95rem,1.2vw,1.05rem)] font-avantt-medium text-[#f84f3e] mt-2"
+                    >
+                      {fieldErrors.message}
+                    </p>
+                  )}
+                </div>
+
+                {/* Submit Button */}
+                <div className="pt-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                  <p className="text-(--primary-text-color)/60 text-[clamp(0.875rem,1.1vw,1rem)] font-avantt-regular">
+                    I usually reply within 1–2 business days.
+                  </p>
+
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="group relative px-5 py-3 bg-(--header-text-color) hover:rounded-lg text-[#0a0a0a] text-[clamp(1.25rem,2.2vw,1.75rem)] font-avantt-heavy uppercase tracking-tight overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed transition-[border-radius,background-color,transform,box-shadow] duration-500 ease-out hover:bg-[#b08d5e] hover:text-[#0a0a0a] hover:-translate-y-px hover:shadow-[0_12px_30px_rgba(0,0,0,0.35)] w-full sm:w-auto"
+                  >
+                    <span className="relative z-10">
+                      {isSubmitting ? "Sending..." : "Send Message"}
+                    </span>
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );

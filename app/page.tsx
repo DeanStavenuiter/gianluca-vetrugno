@@ -4,7 +4,7 @@ import Services from "./components/Services";
 import Articles from "./components/Articles";
 import About from "./components/About";
 // import Navigation from "./components/Navigation";
-// import Contact from "./components/Contact";
+import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import BridgeLine from "./components/BridgeLine";
 import Outro from "./components/Outro";
@@ -30,6 +30,7 @@ export default function Home() {
         <Articles />
       </div>
       <ImageGallery />
+      <Contact />
       <Outro />
       <Footer />
     </div>

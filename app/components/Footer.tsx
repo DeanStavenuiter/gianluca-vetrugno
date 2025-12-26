@@ -110,120 +110,84 @@ const Footer = () => {
       className="relative z-10 w-full bg-black border-t border-(--secondary-text-color)/30 py-12 px-6 md:px-12 lg:px-24"
     >
       <div className="max-w-6xl mx-auto">
-        {isMainPage ? (
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8 mb-12">
-            {/* Name and Description - Left Side */}
-            <div ref={nameRef} className="flex flex-col gap-2">
-              <p className="text-(--header-text-color) text-[clamp(0.875rem,1.2vw,1.125rem)] font-avantt-medium uppercase">
-                Gianluca Vetrugno
-              </p>
-              <p className="text-(--primary-text-color) text-[clamp(0.75rem,1vw,0.9375rem)] font-avantt-medium">
-                Former Michelin Starred Head Chef & Creative Consultant.
-              </p>
-            </div>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8 mb-12">
+          {/* Name and Description - Left Side */}
+          <div ref={nameRef} className="flex flex-col gap-2">
+            <p className="text-(--header-text-color) text-[clamp(0.875rem,1.2vw,1.125rem)] font-avantt-medium uppercase">
+              Gianluca Vetrugno
+            </p>
+            <p className="text-(--primary-text-color) text-[clamp(0.75rem,1vw,0.9375rem)] font-avantt-medium">
+              Former Michelin Starred Head Chef & Creative Consultant.
+            </p>
+          </div>
 
-            {/* Links Section */}
-            <div ref={linksRef} className="flex flex-col gap-4">
-              <h3 className="text-(--header-text-color)/80 text-[clamp(1rem,1.5vw,1.25rem)] font-avantt-heavy uppercase tracking-tight">
-                Links
-              </h3>
-              <div className="flex flex-col gap-2">
-                {navLinks.map((link) =>
-                  link.id === "contact" ? (
-                    <Link
-                      key={link.id}
-                      href="/contact"
-                      className="text-left text-(--primary-text-color) hover:text-(--secondary-text-color) text-[clamp(0.875rem,1.2vw,1rem)] font-avantt-medium uppercase tracking-tight transition-colors duration-300"
-                    >
-                      {link.name}
-                    </Link>
-                  ) : (
-                    <button
-                      key={link.id}
-                      onClick={() => scrollToSection(link.id)}
-                      className="text-left text-(--primary-text-color) hover:text-(--secondary-text-color) text-[clamp(0.875rem,1.2vw,1rem)] font-avantt-medium uppercase tracking-tight transition-colors duration-300"
-                    >
-                      {link.name}
-                    </button>
-                  )
-                )}
-              </div>
-            </div>
-
-            {/* Services Section */}
-            <div ref={servicesRef} className="flex flex-col gap-4">
-              <h3 className="text-(--header-text-color)/80 text-[clamp(1rem,1.5vw,1.25rem)] font-avantt-heavy uppercase tracking-tight">
-                Services
-              </h3>
-              <div className="flex flex-col gap-2">
-                {services.map((service, index) => (
-                  <button
-                    key={index}
-                    onClick={() => scrollToSection("services")}
-                    className="text-left text-(--primary-text-color) hover:text-(--secondary-text-color) text-[clamp(0.875rem,1.2vw,1rem)] font-avantt-medium transition-colors duration-300"
+          {/* Links Section */}
+          <div ref={linksRef} className="flex flex-col gap-4">
+            <h3 className="text-(--header-text-color)/80 text-[clamp(1rem,1.5vw,1.25rem)] font-avantt-heavy uppercase tracking-tight">
+              Links
+            </h3>
+            <div className="flex flex-col gap-2">
+              {navLinks.map((link) =>
+                link.id === "contact" ? (
+                  <Link
+                    key={link.id}
+                    href="/contact"
+                    className="text-left text-(--primary-text-color) hover:text-(--secondary-text-color) text-[clamp(0.875rem,1.2vw,1rem)] font-avantt-medium uppercase tracking-tight transition-colors duration-300"
                   >
-                    {service}
+                    {link.name}
+                  </Link>
+                ) : (
+                  <button
+                    key={link.id}
+                    onClick={() => scrollToSection(link.id)}
+                    className="text-left text-(--primary-text-color) hover:text-(--secondary-text-color) text-[clamp(0.875rem,1.2vw,1rem)] font-avantt-medium uppercase tracking-tight transition-colors duration-300"
+                  >
+                    {link.name}
                   </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Contact Section */}
-            <div ref={contactRef} className="flex flex-col gap-4">
-              <h3 className="text-(--header-text-color)/80 text-[clamp(1rem,1.5vw,1.25rem)] font-avantt-heavy uppercase tracking-tight">
-                Contact
-              </h3>
-              <div className="flex flex-col gap-2">
-                <p className="text-(--primary-text-color) text-[clamp(0.875rem,1.2vw,1rem)] font-avantt-medium">
-                  Gianluca Vetrugno
-                </p>
-                <a
-                  href="mailto:info@gianluca-vetrugno.com"
-                  className="text-(--primary-text-color) hover:text-(--secondary-text-color) text-[clamp(0.875rem,1.2vw,1rem)] font-avantt-medium transition-colors duration-300"
-                >
-                  info@gianluca-vetrugno.com
-                </a>
-                <p className="text-(--primary-text-color) text-[clamp(0.875rem,1.2vw,1rem)] font-avantt-medium">
-                  Antwerp, Belgium
-                </p>
-              </div>
+                )
+              )}
             </div>
           </div>
-        ) : (
-          // mobile view
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-8 mb-12">
-            {/* Name and Description - Left Side */}
-            <div ref={nameRef} className="flex flex-col gap-2">
-              <p className="text-(--header-text-color) text-[clamp(0.875rem,1.2vw,1.125rem)] font-avantt-heavy uppercase">
+
+          {/* Services Section */}
+          <div ref={servicesRef} className="flex flex-col gap-4">
+            <h3 className="text-(--header-text-color)/80 text-[clamp(1rem,1.5vw,1.25rem)] font-avantt-heavy uppercase tracking-tight">
+              Services
+            </h3>
+            <div className="flex flex-col gap-2">
+              {services.map((service, index) => (
+                <button
+                  key={index}
+                  onClick={() => scrollToSection("services")}
+                  className="text-left text-(--primary-text-color) hover:text-(--secondary-text-color) text-[clamp(0.875rem,1.2vw,1rem)] font-avantt-medium transition-colors duration-300"
+                >
+                  {service}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Contact Section */}
+          <div ref={contactRef} className="flex flex-col gap-4">
+            <h3 className="text-(--header-text-color)/80 text-[clamp(1rem,1.5vw,1.25rem)] font-avantt-heavy uppercase tracking-tight">
+              Contact
+            </h3>
+            <div className="flex flex-col gap-2">
+              <p className="text-(--primary-text-color) text-[clamp(0.875rem,1.2vw,1rem)] font-avantt-medium">
                 Gianluca Vetrugno
               </p>
-              <p className="text-(--primary-text-color) text-[clamp(0.75rem,1vw,0.9375rem)] font-avantt-medium">
-                Former Michelin Starred Head Chef & Creative Consultant.
+              <a
+                href="mailto:info@gianluca-vetrugno.com"
+                className="text-(--primary-text-color) hover:text-(--secondary-text-color) text-[clamp(0.875rem,1.2vw,1rem)] font-avantt-medium transition-colors duration-300"
+              >
+                info@gianluca-vetrugno.com
+              </a>
+              <p className="text-(--primary-text-color) text-[clamp(0.875rem,1.2vw,1rem)] font-avantt-medium">
+                Antwerp, Belgium
               </p>
             </div>
-
-            {/* Contact Section */}
-            <div ref={contactRef} className="flex flex-col gap-4">
-              <h3 className="text-(--primary-text-color) text-[clamp(1rem,1.5vw,1.25rem)] font-avantt-heavy uppercase tracking-tight">
-                Contact
-              </h3>
-              <div className="flex flex-col gap-2">
-                <p className="text-(--secondary-text-color) text-[clamp(0.875rem,1.2vw,1rem)] font-avantt-medium">
-                  Gianluca Vetrugno
-                </p>
-                <a
-                  href="mailto:hello@gianluca-vetrugno.com"
-                  className="text-(--secondary-text-color) hover:text-(--primary-text-color) text-[clamp(0.875rem,1.2vw,1rem)] font-avantt-medium transition-colors duration-300"
-                >
-                  info@gianluca-vetrugno.com
-                </a>
-                <p className="text-(--secondary-text-color) text-[clamp(0.875rem,1.2vw,1rem)] font-avantt-medium">
-                  Antwerp, Belgium
-                </p>
-              </div>
-            </div>
           </div>
-        )}
+        </div>
 
         {/* Bottom Section */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pt-8 border-t border-[#fee9ce]/10">
