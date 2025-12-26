@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import gsap from "gsap";
+import { MessageCircleMore } from "lucide-react";
 
 const FloatingContactButton = () => {
   const pathname = usePathname();
@@ -75,15 +76,23 @@ const FloatingContactButton = () => {
         contactEl?.scrollIntoView({ behavior: "smooth", block: "start" });
       }}
     >
-      <div className="relative flex items-center gap-3 rounded-lg bg-(--secondary-text-color) px-6 py-4 transition-all duration-300 hover:bg-(--secondary-hover-text-color) hover:shadow-[0_0_30px_rgba(46,79,79,0.5)]">
+      <div className="mobile-glow-pulse sm:animate-none relative flex items-center gap-3 rounded-full sm:rounded-lg bg-(--secondary-text-color) px-4 py-4 sm:px-6 transition-all duration-300 hover:bg-(--secondary-hover-text-color) hover:shadow-[0_0_30px_rgba(46,79,79,0.5)]">
         {/* Decorative corner accent */}
-        <div className="absolute -top-1 -left-1 w-3 h-3" />
-        <div className="absolute -bottom-1 -right-1 w-3 h-3" />
+        <div className="absolute -top-1 -left-1 w-3 h-3 hidden sm:block" />
+        <div className="absolute -bottom-1 -right-1 w-3 h-3 hidden sm:block" />
+
+        {/* Mobile: icon only */}
+        <span className="sm:hidden text-(--primary-text-color)">
+          <MessageCircleMore className="h-5 w-5" aria-hidden="true" />
+        </span>
         
-        <span className="text-(--primary-text-color) text-[clamp(0.875rem,1.2vw,1rem)] font-avantt-heavy uppercase tracking-tight">
+        {/* Desktop: text label */}
+        <span className="hidden sm:inline text-(--primary-text-color) text-[clamp(0.875rem,1.2vw,1rem)] font-avantt-heavy uppercase tracking-tight">
           Let&apos;s Connect
         </span>
-        <span className="text-(--primary-text-color) font-avantt-medium transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1">
+
+        {/* Desktop arrow */}
+        <span className="hidden sm:inline text-(--primary-text-color) font-avantt-medium transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1">
           ↗
         </span>
       </div>
