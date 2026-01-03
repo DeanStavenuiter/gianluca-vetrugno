@@ -18,7 +18,7 @@ const images: GalleryImage[] = [
     alt: "Gallery image 1",
   },
   {
-    src: "https://gianluca-vetrugno.s3.eu-west-3.amazonaws.com/image-gallery/IMG_1724.webp",
+    src: "https://gianluca-vetrugno.s3.eu-west-3.amazonaws.com/image-gallery/Events.webp",
     alt: "Gallery image 2",
   },
   {
@@ -26,7 +26,7 @@ const images: GalleryImage[] = [
     alt: "Gallery image 3",
   },
   {
-    src: "https://gianluca-vetrugno.s3.eu-west-3.amazonaws.com/image-gallery/IMG_4846.webp",
+    src: "https://gianluca-vetrugno.s3.eu-west-3.amazonaws.com/image-gallery/AR502365.webp",
     alt: "Gallery image 4",
   },
   {
@@ -38,11 +38,11 @@ const images: GalleryImage[] = [
     alt: "Gallery image 6",
   },
   {
-    src: "https://gianluca-vetrugno.s3.eu-west-3.amazonaws.com/image-gallery/IMG_8779.webp",
+    src: "https://gianluca-vetrugno.s3.eu-west-3.amazonaws.com/image-gallery/IMG_1724.webp",    
     alt: "Gallery image 7",
   },
   {
-    src: "https://gianluca-vetrugno.s3.eu-west-3.amazonaws.com/image-gallery/IMG_8781.webp",
+    src: "https://gianluca-vetrugno.s3.eu-west-3.amazonaws.com/image-gallery/IMG_4638.mp4",
     alt: "Gallery image 8",
   },
   {
@@ -50,11 +50,11 @@ const images: GalleryImage[] = [
     alt: "Gallery image 9",
   },
   {
-    src: "https://gianluca-vetrugno.s3.eu-west-3.amazonaws.com/image-gallery/IMG_8785.webp",
+    src: "https://gianluca-vetrugno.s3.eu-west-3.amazonaws.com/image-gallery/ConsultingPlating.webp",
     alt: "Gallery image 10",
   },
   {
-    src: "https://gianluca-vetrugno.s3.eu-west-3.amazonaws.com/image-gallery/IMG_8799.webp",
+    src: "https://gianluca-vetrugno.s3.eu-west-3.amazonaws.com/image-gallery/4hands5.webp",
     alt: "Gallery image 11",
   },
   {
@@ -110,7 +110,19 @@ const ImageGallery = () => {
         ref={gridRef}
         className="grid grid-cols-2 md:grid-cols-6 gap-3 md:gap-4 max-w-7xl mx-auto"
       >
-        {images.map((image, index) => (
+        {images.map((image, index) => {
+          return (
+          index === 7 ? (
+            <Link href={"https://www.instagram.com/vetrugno_gianluca/"} target="_blank" rel="noopener noreferrer" key={index}>
+              <div
+                className="gallery-item aspect-square relative overflow-hidden rounded-lg"
+              >
+               <video loop autoPlay muted playsInline>
+                <source src={image.src} type="video/mp4" />
+               </video>
+              </div>
+            </Link>
+          ): (
           <Link href={"https://www.instagram.com/vetrugno_gianluca/"} target="_blank" rel="noopener noreferrer" key={index}>
           <div
             className="gallery-item aspect-square relative overflow-hidden rounded-lg"
@@ -123,8 +135,9 @@ const ImageGallery = () => {
               sizes="(max-width: 768px) 50vw, 16.66vw"
             />
           </div>
-          </Link>
-                ))}
+          </Link>)  
+                )
+          })}
       </div>
       <p className="text-center text-sm text-(--primary-text-color) font-avantt-regular mt-4">
         If you want to see more of what I do, please visit my Instagram page{" "}

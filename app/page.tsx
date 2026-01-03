@@ -7,7 +7,7 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import BridgeLine from "./components/BridgeLine";
 import Outro from "./components/Outro";
-import Services2 from "./components/Services2";
+import Services from "./components/Services";
 import ImageGallery from "./components/ImageGallery";
 
 export default function Home() {
@@ -20,7 +20,7 @@ export default function Home() {
         <BridgeLine />
       </div>
       <div data-section="services">
-        <Services2 />
+        <Services />
       </div>
       <div data-section="about">
         <About />

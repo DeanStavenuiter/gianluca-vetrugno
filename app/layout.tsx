@@ -33,13 +33,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="nl-NL">
+    <html lang="en-BE">
       <head>
         {/* prefetch aws images  */}
         <link
           rel="preload"
           href="https://gianluca-vetrugno.s3.eu-west-3.amazonaws.com/gianluca-vetrugno.webp"
           as="image"
+        />
+        <link
+          rel="preload"
+          href="https://gianluca-vetrugno.s3.eu-west-3.amazonaws.com/image-gallery/IMG_4638.mp4"
+          as="video"
         />
         <link
           rel="dns-prefetch"
