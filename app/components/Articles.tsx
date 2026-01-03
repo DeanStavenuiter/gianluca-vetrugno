@@ -124,6 +124,43 @@ const Articles = () => {
     };
   }, []);
 
+  // Animate article rows one by one on scroll
+  useEffect(() => {
+    const listElement = listRef.current;
+    if (!listElement) return;
+
+    const rows = listElement.querySelectorAll("li");
+
+    // Set initial state (hidden)
+    gsap.set(rows, {
+      opacity: 0,
+      y: 40,
+    });
+
+    // Create scroll-triggered staggered animation
+    gsap.to(rows, {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      ease: "power3.out",
+      stagger: 0.1,
+      scrollTrigger: {
+        trigger: listElement,
+        start: "top 75%",
+        end: "bottom 20%",
+        toggleActions: "play none none reverse",
+      },
+    });
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => {
+        if (trigger.trigger === listElement) {
+          trigger.kill();
+        }
+      });
+    };
+  }, []);
+
   useEffect(() => {
     const listElement = listRef.current;
     const mediaContainer = mediaContainerRef.current;
@@ -140,9 +177,14 @@ const Articles = () => {
       ease: "power4",
     });
 
+    // Ensure the container starts in a visible viewport position (even before first mousemove)
+    let lastMouseY = window.innerHeight / 2;
+    gsap.set(mediaContainer, { y: lastMouseY });
+
     // Show media container on list hover
     const handleMouseEnter = () => {
       mediaContainer.style.visibility = "visible";
+      yTo(lastMouseY);
     };
 
     const handleMouseLeave = () => {
@@ -152,7 +194,8 @@ const Articles = () => {
     };
 
     const handleMouseMove = (e: MouseEvent) => {
-      yTo(e.clientY); // Track vertical position only
+      lastMouseY = e.clientY;
+      yTo(lastMouseY); // Track vertical position only
     };
 
     listElement.addEventListener("mouseenter", handleMouseEnter);
@@ -230,16 +273,32 @@ const Articles = () => {
   }, []);
 
   return (
-    <section className="min-h-screen w-full font-avantt-heavy">
+    <section className="w-full">
       <div ref={containerRef} className="">
         <h2
           ref={titleRef}
-          className="text-[clamp(2.5rem,8vw,6rem)] tracking-tighter font-avantt-heavy uppercase text-[#f84f3e] pl-4 md:pl-6"
+          className="text-[clamp(2.5rem,8vw,4rem)] font-avantt-heavy uppercase text-(--header-text-color) pl-4 md:pl-6 tracking-[0.12em]"
         >
-          Press & Features
+          Press
         </h2>
 
-        <ul ref={listRef} className="">
+        {/* Shared media container for hover effect (kept OUTSIDE animated rows) */}
+        <div
+          ref={mediaContainerRef}
+          className="hidden md:block fixed pointer-events-none z-50 rounded-lg"
+          style={{
+            width: "24vw",
+            height: "24vw",
+            right: "23vw",
+            top: 0,
+            overflow: "hidden",
+            visibility: "hidden",
+          }}
+        >
+          {/* Images will be dynamically added here */}
+        </div>
+
+        <ul ref={listRef} className="font-avantt-regular">
           {articles.map((article, index) => (
             <li
               key={index}
@@ -248,30 +307,15 @@ const Articles = () => {
             >
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                 <div className="flex-1">
-                  <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-[#fee9ce]">
+                  <h3 className="text-(--primary-text-color) text-[clamp(1.1rem,2vw,1.5rem)] font-avantt-medium tracking-tight leading-snug">
                     {article.title}
                   </h3>
                 </div>
                 <div className="flex items-center gap-4 md:gap-8">
-                  <span className="text-sm md:text-base font-semibold whitespace-nowrap text-[#ffb160]">
+                  <span className="text-sm md:text-base font-semibold whitespace-nowrap text-(--primary-text-color)/80 group-hover:text-(--secondary-text-color) transition-colors duration-300">
                     {article.publication}
                   </span>
-                  {/* Media container for hover effect - hidden on mobile */}
-                  <div
-                    ref={mediaContainerRef}
-                    className="hidden md:block fixed pointer-events-none z-50 rounded-lg"
-                    style={{
-                      width: "24vw",
-                      height: "24vw",
-                      right: "23vw",
-                      top: 0,
-                      overflow: "hidden",
-                      visibility: "hidden",
-                    }}
-                  >
-                    {/* Images will be dynamically added here */}
-                  </div>
-                  <span className="text-sm text-[#fee9ce] md:text-base whitespace-nowrap md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
+                  <span className="text-sm text-(--primary-text-color) md:text-base whitespace-nowrap md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
                     Read article{" "}
                     <span className="hidden md:inline-block -rotate-45">→</span>
                     <span className="inline-block md:hidden -rotate-45">→</span>

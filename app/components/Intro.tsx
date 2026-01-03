@@ -2,7 +2,6 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,27 +16,42 @@ const wrapWordsInSpan = (element: HTMLElement) => {
 
 const Intro = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const paragraph1Ref = useRef<HTMLParagraphElement>(null);
-  const paragraph2Ref = useRef<HTMLParagraphElement>(null);
-  const paragraph3Ref = useRef<HTMLParagraphElement>(null);
-  const image1Ref = useRef<HTMLDivElement>(null);
-  const image2Ref = useRef<HTMLDivElement>(null);
-  const image3Ref = useRef<HTMLDivElement>(null);
-  const image4Ref = useRef<HTMLDivElement>(null);
+  const paragraphsContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Array of all paragraph refs
-    const paragraphs = [paragraph1Ref, paragraph2Ref, paragraph3Ref];
+    if (!paragraphsContainerRef.current || !containerRef.current) return;
+
+    // Get all paragraph wrapper divs
+    const paragraphDivs = paragraphsContainerRef.current.querySelectorAll(".paragraph-wrapper");
+    
+    // Set initial state for each paragraph - invisible and slightly below
+    gsap.set(paragraphDivs, { opacity: 0, y: 30 });
+    
+    // Animate each paragraph individually as it scrolls into view
+    paragraphDivs.forEach((div) => {
+      gsap.to(div, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: div,
+          start: "top 75%",
+          toggleActions: "play none none none",
+        },
+      });
+    });
+
+    // Get all paragraph elements
+    const paragraphElements = paragraphsContainerRef.current.querySelectorAll("p");
 
     // Process each paragraph
-    paragraphs.forEach((paragraphRef) => {
-      if (!paragraphRef.current) return;
-
+    paragraphElements.forEach((paragraph) => {
       // Wrap words in spans
-      wrapWordsInSpan(paragraphRef.current);
+      wrapWordsInSpan(paragraph);
 
       // Get all word spans
-      const words = paragraphRef.current.querySelectorAll("span");
+      const words = paragraph.querySelectorAll("span");
 
       // Randomly assign classes word0, word1, word2, word3 to each word
       words.forEach((word) => {
@@ -54,12 +68,11 @@ const Intro = () => {
         {
           x: 0,
           ease: "none",
-          
           scrollTrigger: {
             trigger: el,
-            start: "top 80%",
-            end: "bottom 60%",
-            scrub: 0.2,
+            start: "top 85%",
+            end: "top 65%",
+            scrub: 0.05,
           },
         }
       );
@@ -75,9 +88,9 @@ const Intro = () => {
           ease: "none",
           scrollTrigger: {
             trigger: el,
-            start: "top 80%",
-            end: "bottom 60%",
-            scrub: 0.2,
+            start: "top 85%",
+            end: "top 65%",
+            scrub: 0.05,
           },
         }
       );
@@ -93,41 +106,12 @@ const Intro = () => {
           ease: "none",
           scrollTrigger: {
             trigger: el,
-            start: "top 80%",
-            end: "bottom 60%",
-            scrub: 0.2,
+            start: "top 85%",
+            end: "top 65%",
+            scrub: 0.05,
           },
         }
       );
-    });
-
-    // Parallax animations for images - vertical movement
-    const images = [
-      { ref: image1Ref, yPercent: -30 },
-      { ref: image2Ref, yPercent: 40 },
-      { ref: image3Ref, yPercent: -35 },
-      { ref: image4Ref, yPercent: 45 },
-    ];
-
-    images.forEach(({ ref, yPercent }) => {
-      if (ref.current) {
-        gsap.fromTo(
-          ref.current,
-          {
-            y: yPercent > 0 ? -100 : 100,
-          },
-          {
-            y: yPercent > 0 ? 100 : -100,
-            ease: "none",
-            scrollTrigger: {
-              trigger: ref.current,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: 1,
-            },
-          }
-        );
-      }
     });
 
     return () => {
@@ -135,95 +119,23 @@ const Intro = () => {
     };
   }, []);
 
+  const paragraphs = [
+    "My cooking is guided by intuition, care, and experience.",
+    "I work with the seasons, listening closely to what each ingredient asks for.",
+    "Every dish is built with balance and clarity of flavors, so nothing overwhelms anything else.",
+    "Each element has its place",
+  ];
+
   return (
-    <div ref={containerRef} className="relative z-10 w-full py-20 px-6 md:px-12 lg:px-24 overflow-x-hidden md:pb-50">
-      <div className="relative space-y-20">
-        {/* Image 1 - Absolutely positioned, rotated right */}
-        <div
-          ref={image1Ref}
-          className="absolute  right-[2%] top-0 md:right-[18%] w-[135px] md:w-[230px] z-0 rotate-[8deg]"
-        >
-          <Image
-            src="https://gianluca-vetrugno.s3.eu-west-3.amazonaws.com/gianluca/gianluca-posing.webp"
-            alt="Gianluca posing"
-            width={280}
-            height={420}
-            className="shadow-2xl object-cover"
-          />
-        </div>
-
-        {/* Image 2 - Absolutely positioned, rotated left */}
-        <div
-          ref={image2Ref}
-          className="absolute top-[25%] md:top-[20%] left-[8%] w-[120px] md:w-[300px] z-0 -rotate-6"
-        >
-          <Image
-            src="https://gianluca-vetrugno.s3.eu-west-3.amazonaws.com/gianluca/gianluca-posing-smiling.webp"
-            alt="Gianluca smiling"
-            width={250}
-            height={375}
-            className="shadow-2xl object-cover"
-          />
-        </div>
-
-        {/* Image 3 - Absolutely positioned, rotated right */}
-        <div
-          ref={image3Ref}
-          className="hidden md:block absolute top-[45%] right-[32%] w-[190px] md:w-[180px] z-0 "
-        >
-          <Image
-            src="https://gianluca-vetrugno.s3.eu-west-3.amazonaws.com/gianluca/gianluca-posing-laughing.webp"
-            alt="Gianluca serious"
-            width={260}
-            height={390}
-            className="shadow-2xl object-cover"
-          />
-        </div>
-
-        {/* Image 4 - Absolutely positioned, rotated left */}
-        <div
-          ref={image4Ref}
-          className="md:z-100 absolute top-[65%] right-[5%] md:top-[92%] md:right-[35%] w-[150px] md:w-[140px] rotate-10 md:rotate-20"
-        >
-          <Image
-            src="https://gianluca-vetrugno.s3.eu-west-3.amazonaws.com/gianluca/gianluca-posing-serious.webp"
-            alt="Gianluca laughing"
-            width={270}
-            height={405}
-            className="shadow-2xl object-cover relative"
-          />
-        </div>
-
-        {/* First paragraph - Left aligned */}
-        <div className="relative z-10 max-w-[70%] ml-0">
-          <p
-            ref={paragraph1Ref}
-            className="text-[clamp(2.5rem,5vw,10rem)] leading-[0.9] text-[#fee9ce] font-light font-avantt-heavy [&>span]:inline-block [&>span]:whitespace-nowrap"
-          >
-            His cooking is simple, honest and full of flavor.
-          </p>
-        </div>
-
-        {/* Second paragraph - Center/Right aligned */}
-        <div className="relative z-10 max-w-[60%] ml-auto mr-[10%]">
-          <p
-            ref={paragraph2Ref}
-            className="text-[clamp(2.5rem,5vw,10rem)] leading-[0.9] text-[#fee9ce] font-light font-avantt-heavy [&>span]:inline-block [&>span]:whitespace-nowrap"
-          >
-            A mix of intuition, technique and memories.
-          </p>
-        </div>
-
-        {/* Third paragraph - Left aligned but indented */}
-        <div className="relative z-10 max-w-[75%] ml-[5%]">
-          <p
-            ref={paragraph3Ref}
-            className="text-[clamp(2.5rem,5vw,10rem)] leading-[0.9] text-[#fee9ce] font-light font-avantt-heavy [&>span]:inline-block [&>span]:whitespace-nowrap"
-          >
-            Every dish is made with warmth, generosity and the intention to
-            create moments that feel personal, effortless and unforgettable.
-          </p>
-        </div>
+    <div ref={containerRef} className="relative text-(--primary-text-color) z-10 w-full px-6 md:px-12 lg:px-24 overflow-x-hidden">
+      <div ref={paragraphsContainerRef} className="flex flex-col items-center space-y-12 max-w-4xl mx-auto">
+        {paragraphs.map((text, index) => (
+          <div key={index} className="paragraph-wrapper relative z-10 text-center">
+            <p className="text-[clamp(1.5rem,3vw,3.7rem)] leading-relaxedfont-light font-avantt-medium [&>span]:inline-block [&>span]:whitespace-nowrap">
+              {text}
+            </p>
+          </div>
+        ))}
       </div>
     </div>
   );
